@@ -1,0 +1,17 @@
+<template name="card">
+    <li id="{{ _id }}" class="card ui-state-default" data-status="{{ status }}">
+        <h4>{{ id }}: {{ title }}</h4> 
+        <h5>{{ description }} <br>
+            assignees:
+            {{#each assignees cardNumber }}
+                {{ assigneeName _id }}, 
+            {{/each }} <br>
+            checklist: 
+            <li>
+                {{#each checklist cardNumber }}
+                    {{> checklist }}
+                {{/each }}
+            </li>
+        </h5>
+    </li>
+</template>

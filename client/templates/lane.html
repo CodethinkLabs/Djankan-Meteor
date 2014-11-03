@@ -1,0 +1,13 @@
+<template name="lane">
+    <div class="lane sortable" id='L{{ _id }}'>
+        <div class="lane_title">
+            <h2>Lane: {{ lanetitle _id  }}</h2>
+        </div>
+        <ul id="{{ _id }}" class="list-area connectedSortable">
+        {{#each cards _id  }}
+            {{> card }}
+        {{/each }}
+        <li data-status="{{ _id }}"></li>
+        </ul>
+    </div>
+</template>
