@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Univers; 
+    src:url("/fonts/univers-ce-45-light.ttf");
+}
+@font-face {
+    font-family: Glypha;
+    src:url("/fonts/glypha-65.ttf");
+    font-weight: bold;
+}
+
+
+html, body {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    font-family: Univers;
+}

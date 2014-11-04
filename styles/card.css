@@ -1,0 +1,40 @@
+.card {
+    cursor: pointer;
+    margin-bottom: 5px ;
+    word-wrap: break-word;
+    background-color: white;
+    border: 0px ;
+    border-style: solid;
+    border-color: #333;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px #ccc;
+    list-style: none;
+}
+
+.card_header {
+    position: relative;
+    background-color: #F9BC8D;
+    padding: 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.edit_card {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 4px;
+}
+
+.card_body {
+    margin: 8px;
+}
+
+.checklist {
+    margin-left: 10px;
+}
+
+.checklist_item {
+    font-size: 12px;
+    list-style:'disc';
+}

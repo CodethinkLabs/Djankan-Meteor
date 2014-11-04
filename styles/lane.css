@@ -1,0 +1,36 @@
+.lane {
+    background-color: #EEE;
+    width: 300px ;
+    float: left;
+    margin-right: 8px ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 100%;
+}
+
+.lane_header {
+    position: relative;
+    color: #1A766F;
+    font-size: 24px;
+    padding-top: 8px;
+    padding-left: 8px;
+    background-color: #BAE8E5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.add_card {
+    position: absolute;
+    font-size: 16px;
+    padding-right: 4px;
+    bottom: 0;
+    right: 0;
+}
+
+.lane_li {
+    list-style: none;
+}
+
+.list-area {
+    padding: 10px ;
+}
