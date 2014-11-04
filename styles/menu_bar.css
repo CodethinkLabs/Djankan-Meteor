@@ -3,10 +3,18 @@
     font-size: 30px;
     font-weight: bold;
     padding-top: 4px;
+    padding-left: 4px;
     position: relative;
     width: 100%;
     height: 32px;
     background-color: #a7d239;
+}
+
+.logo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-right: 8px;
 }
 
 .menu_bar_line {

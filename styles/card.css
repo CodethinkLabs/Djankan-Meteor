@@ -19,7 +19,11 @@
     border-top-right-radius: 9px;
 }
 
-.edit_card {
+.edit_card a {
+    text-decoration: none;
+    opacity: 0;
+    color: black;
+    font-size: 20px;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -30,11 +34,10 @@
     margin: 8px;
 }
 
-.checklist {
-    margin-left: 10px;
-}
-
 .checklist_item {
     font-size: 12px;
     list-style:'disc';
+}
+.card:hover .edit_card a {
+    opacity: 1;
 }

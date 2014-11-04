@@ -1,7 +1,7 @@
 <template name="card">
     <li id="{{ _id }}" class="card ui-state-default" data-status="{{ status }}">
         <div class="card_header"><b>{{ header.cardNumber }}: {{ title }}</b>
-            <div class="edit_card"><a>edit</a></div>
+            <div class="edit_card"><a class="edit_card_link" href="#">&#x270E;</a></div>
         </div>
         <div class="card_body">
             {{ description }} <br><br>
