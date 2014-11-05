@@ -10,6 +10,29 @@ Template.lane.helpers({
 });
 Template.lane.events = {
     "click .add_card_link": function() {
-        alert("adding a new card not yet implimented");
+        id = this.id
+        //put a new card header and blank card then get
+        blankCard = {
+            "header": {
+                "cardNumber": 0,
+                "createDate": "2014-11-05T11:49:38.077Z", 
+                 "creator": 1
+            }, 
+            "lane": id,
+            "milestone": null, 
+            "bucket": null, 
+            "title": "Title", 
+            "description": "Description", 
+            "dueDate": "2014-11-05T13:20:16Z", 
+            "timeEstimate": 1, 
+            "result": "", 
+            "modifiedDate": "2014-11-05T13:38:52.905Z", 
+            "archived": false, 
+            "position": 1, 
+            "lastUser": 1, 
+            "supersededBy": null
+        };
+        Meteor.call('postcard',blankCard);
+        Meteor.call('getallcards');
     }
 }

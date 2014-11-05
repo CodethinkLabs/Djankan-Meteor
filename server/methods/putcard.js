@@ -4,7 +4,6 @@ Meteor.methods({
         ID = card.header.cardNumber;
         card.title=title;
         card.description=description;
-        console.log(description)
         delete card['_id'];
         url = HOST+API+'card/'+ID+'/';
         try {

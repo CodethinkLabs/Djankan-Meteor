@@ -1,3 +1,13 @@
+function boardToCollection(url,Collection) {
+    try {
+        var r = HTTP.call("GET", url);
+        Collection.insert(JSON.parse(r.content));
+    }
+    catch (e) {
+        console.log("Response issue: url: "+url);
+    }
+}
+
 function getToCollection(url,Collection) {
     try {
         var r = HTTP.call("GET", url);
@@ -24,12 +34,15 @@ Meteor.startup(function() {
     cards_url = board_url+'cards/';
 
     getToCollection(users_url,Users);
-    getToCollection(board_url,Boards);
+    boardToCollection(board_url,Boards);
     getToCollection(lanes_url,Lanes);
     getToCollection(cards_url,Cards);
     cards = Cards.find({});
+    nextCardNumber=0;
     cards.forEach(function (card) {
         card_id = card.header.cardNumber;
+        if( card_id > nextCardNumber)
+            nextCardNumber=card_id;
         checklist_url = HOST+API+'card/'+card_id+'/checklists/';
         assignees_url = HOST+API+'card/'+card_id+'/assignees/';
         getToCollection(checklist_url,Checklists);

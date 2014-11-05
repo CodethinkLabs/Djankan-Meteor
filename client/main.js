@@ -1,1 +1,0 @@
-Boards.insert({'title':'foo'});
