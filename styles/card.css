@@ -17,6 +17,9 @@
     padding: 4px;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
+    border-bottom-width:1px;
+    border-bottom-color:#dea87e;
+    border-bottom-style: solid;
 }
 .card_header_edit {
     height: 24px;

@@ -5,7 +5,8 @@
     margin-right: 8px ;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    height: 100%;
+    min-height: 100%;
+    box-shadow: 1px 0px 1px #ccc;
 }
 
 .lane_header {
@@ -17,6 +18,9 @@
     background-color: #BAE8E5;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    border-bottom-width:1px;
+    border-bottom-color:#a8d2cf;
+    border-bottom-style: solid;
 }
 
 .add_card a {
