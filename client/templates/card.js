@@ -21,7 +21,7 @@ Template.card.events = {
         $('#'+_id).html(EDIT_CARD(this,_id));
         $('button').on('click', function() {
             title = $('#'+_id+' textarea').val();
-            description = $('#'+_id).find('textarea[name="description"]').text();
+            description = $('#'+_id).find('textarea[name="description"]').val();
             Meteor.call('putcard',_id,title,description);
             Meteor.call('getallcards');
         });
