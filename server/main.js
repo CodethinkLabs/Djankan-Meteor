@@ -30,7 +30,6 @@ Meteor.startup(function() {
     cards = Cards.find({});
     cards.forEach(function (card) {
         card_id = card.header.cardNumber;
-        console.log(card_id);
         checklist_url = HOST+API+'card/'+card_id+'/checklists/';
         assignees_url = HOST+API+'card/'+card_id+'/assignees/';
         getToCollection(checklist_url,Checklists);

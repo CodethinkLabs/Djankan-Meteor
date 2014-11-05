@@ -18,6 +18,14 @@
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
 }
+.card_header_edit {
+    height: 24px;
+    position: relative;
+    padding-left: 16px;
+    background-color: #F9BC8D;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
 
 .edit_card a {
     text-decoration: none;

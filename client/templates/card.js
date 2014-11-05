@@ -14,3 +14,16 @@ Template.card.helpers({
         return Checklists.findOne({_id:checklist_id}).description;
     }
 });
+
+Template.card.events = {
+    "click .edit_card_link": function () {
+        _id = this._id;
+        $('#'+_id).html(EDIT_CARD(this,_id));
+        $('button').on('click', function() {
+            title = $('#'+_id+' textarea').val();
+            description = $('#'+_id).find('textarea[name="description"]').text();
+            Meteor.call('putcard',_id,title,description);
+            Meteor.call('getallcards');
+        });
+    }
+}

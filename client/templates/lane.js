@@ -8,3 +8,8 @@ Template.lane.helpers({
         return title;
     }
 });
+Template.lane.events = {
+    "click .add_card_link": function() {
+        alert("adding a new card not yet implimented");
+    }
+}
