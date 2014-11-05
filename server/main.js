@@ -13,7 +13,8 @@ function getToCollection(url,Collection) {
         var r = HTTP.call("GET", url);
         var respJson = JSON.parse(r.content)
         for(var i=0;i<respJson.length;i++) {
-            Collection.insert(respJson[i])
+            if(!respJson[i].archived)
+                Collection.insert(respJson[i])
         }
     }
     catch (e) {

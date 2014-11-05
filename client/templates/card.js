@@ -22,7 +22,8 @@ Template.card.events = {
         $('button').on('click', function() {
             title = $('#'+_id+' textarea').val();
             description = $('#'+_id).find('textarea[name="description"]').val();
-            Meteor.call('putcard',_id,title,description);
+            archive = $('#'+_id+'archive').is(':checked');
+            Meteor.call('putcard',_id,title,description,archive);
             Meteor.call('getallcards');
         });
     }
