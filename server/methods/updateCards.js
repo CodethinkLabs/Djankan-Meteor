@@ -1,3 +1,5 @@
+// when a card is created or edited this is called to refresh the cards
+// because it is serverside it refreshes the cards for all clients 
 Meteor.methods({
     updateCards: function() {
         url=HOST+API+'boards/'+BOARD_ID+'/cards/';

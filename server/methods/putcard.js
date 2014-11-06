@@ -1,3 +1,5 @@
+// method to put a card when the title description or archive status
+// is edited on the GUI
 Meteor.methods({
     putcard: function(card_id,title,description,archive) {
         card = Cards.findOne({_id:card_id});

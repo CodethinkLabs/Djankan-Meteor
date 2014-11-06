@@ -1,3 +1,4 @@
+// html which is put into the card by jquery when a user clicks edit
 EDIT_CARD = function (template,card_id) {
     card=Cards.findOne({_id:card_id});
     title=card.title;

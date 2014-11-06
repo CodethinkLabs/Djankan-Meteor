@@ -33,6 +33,6 @@ Template.lane.events = {
             "supersededBy": null
         };
         Meteor.call('postcard',blankCard);
-        Meteor.call('getallcards');
+        Meteor.call('updateCards');
     }
 }

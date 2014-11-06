@@ -18,12 +18,14 @@ Template.card.helpers({
 Template.card.events = {
     "click .edit_card_link": function () {
         _id = this._id;
+        // replace card html with the html in EDIT_CARD
         $('#'+_id).html(EDIT_CARD(this,_id));
         $('button').on('click', function() {
             title = $('#'+_id+' textarea').val();
             description = $('#'+_id).find('textarea[name="description"]').val();
             archive = $('#'+_id+'archive').is(':checked');
             Meteor.call('putcard',_id,title,description,archive);
+            // remove the card from the server collection so that the normal html is replaced
             Cards.remove({_id:_id});
             Meteor.call('updateCards');
         });
