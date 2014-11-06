@@ -1,5 +1,8 @@
 Template.menu_bar.helpers({
     boardName: function() {
-        return Boards.findOne({}).title;
+        if(Boards.findOne({}))
+            return Boards.findOne({}).title;
+        else
+            return "Kanban";
     }
 });

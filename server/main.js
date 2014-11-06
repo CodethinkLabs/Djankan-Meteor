@@ -24,6 +24,23 @@ function getToCollection(url,Collection) {
     } 
 }
 
+function lanesToCollection(url,Collection) {
+    try {
+        var r = HTTP.call("GET", url);
+        var respJson = JSON.parse(r.content)
+        respJson.sort(function(obj1, obj2) {
+            return obj1.position - obj2.position;
+});
+        for(var i=0;i<respJson.length;i++) {
+            Collection.insert(respJson[i])
+        }
+    }
+    catch (e) {
+        console.log("Response issue: url: "+url);
+    }
+}
+
+
 Meteor.startup(function() {
     // clear all data from previous instance to stop
     Boards.remove({});
@@ -39,7 +56,7 @@ Meteor.startup(function() {
     // get fresh data
     getToCollection(users_url,Users);
     boardToCollection(board_url,Boards);
-    getToCollection(lanes_url,Lanes);
+    lanesToCollection(lanes_url,Lanes);
     getToCollection(cards_url,Cards);
     // get assignees and checklists for each card in board
     cards = Cards.find({});

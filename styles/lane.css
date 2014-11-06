@@ -10,6 +10,7 @@
 }
 
 .lane_header {
+    cursor: move;
     position: relative;
     color: #1A766F;
     font-size: 24px;
@@ -43,4 +44,14 @@
 }
 .lane_header:hover .add_card a {
     opacity: 1;
+}
+
+.lane_placeholder {
+    background-color: #aaa;
+    width: 300px ;
+    float: left;
+    margin-right: 8px ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    min-height: 100%;
 }

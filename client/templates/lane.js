@@ -6,6 +6,10 @@ Template.lane.helpers({
     lanetitle: function(mongo_id) {
         title = Lanes.findOne({_id:mongo_id}).title;
         return title;
+    },
+    laneposition: function(mongo_id) {
+        position = Lanes.findOne({_id:mongo_id}).position;
+        return position;
     }
 });
 Template.lane.events = {
