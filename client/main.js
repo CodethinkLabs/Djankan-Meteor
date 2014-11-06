@@ -13,9 +13,11 @@ function initialSortable() {
                 var lane = Lanes.findOne({_id:laneId});
                 var position = laneIds.indexOf(laneId);
                 lane.position=position;
+                // TODO change this so that it doesn't update first then will look smoother
                 Lanes.update({_id:lane._id},lane);
             });
             Meteor.call('putlanes');
+            // TODO change this to only put one lane
             Meteor.call('updateLanes');
         },
         stop: function(event, ui) {
@@ -31,13 +33,18 @@ function initialSortable() {
         },
         stop: function(event, ui) {
             // get card id
-            cardId = ui.item.context.id;
-            card = Cards.findOne({_id:cardId});
+            var cardId = ui.item.context.id;
+            var card = Cards.findOne({_id:cardId});
             // get new parent lane
-            console.log(ui.item.parent().attr('id'))
+            var newLaneId = ui.item.parent().attr('id');
+            var newLane = Lanes.findOne({_id:newLaneId});
             // change card lane attr
-            // put card
-            // update cards
+            if(newLane.id!=card.lane){
+                // put card
+                Meteor.call('changeLane',cardId,newLane.id);
+                // update cards
+                Meteor.call('updateCards');
+            }
             initialSortable();
         }
     }).disableSelection();

@@ -10,14 +10,19 @@ Meteor.methods({
                 gotCard=respJson[i]
                 localCard=Cards.findOne({id:gotCard.id})
                 // if no correspoding in collection insert it
-                if(!localCard)
+                if(!localCard) {
                     if(!gotCard.archived)
                         Cards.insert(gotCard);
+                }
                 // else check to see if been archived
                 else if(gotCard.archived)
                     Cards.remove(localCard)
-                // else check to see if title or description changed
-                else if(gotCard.description!=localCard.description || gotCard.title != localCard.title)
+                // else check to see if title or description or lane changed
+                else if(gotCard.description!=localCard.description)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.title!=localCard.title)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.lane!=localCard.lane)
                     Cards.update(localCard,gotCard);
             }
         }
