@@ -2,15 +2,12 @@
     <div class="lane sortable" id='{{ _id }}'>
         <div class="lane_header">
             <b>{{ lanetitle _id  }}</b>
-            <div class="add_card">
-                <a class="add_card_link" href="#">+</a>
-            </div>
+            <a class="add_card_link" href="#">+</a>
         </div>
         <ul id="{{ _id }}" class="list-area connectedSortable">
         {{#each cards _id  }}
             {{> card }}
         {{/each }}
-        <li data-status="{{ _id }}" class="lane_li"></li>
         </ul>
     </div>
 </template>
