@@ -13,17 +13,15 @@ function initialSortable() {
                 var lane = Lanes.findOne({_id:laneId});
                 var position = laneIds.indexOf(laneId);
                 lane.position=position;
-                // TODO change this so that it doesn't update first then will look smoother
                 Lanes.update({_id:lane._id},lane);
             });
             Meteor.call('putlanes');
-            // TODO change this to only put one lane
             Meteor.call('updateLanes');
         },
         stop: function(event, ui) {
             initialSortable();
         }
-    }).disableSelection();
+    })
 
     $('ul').sortable({
         handle: '.card_header',
@@ -47,7 +45,7 @@ function initialSortable() {
             }
             initialSortable();
         }
-    }).disableSelection();
+    })
 }
 
 Meteor.startup(function () {
