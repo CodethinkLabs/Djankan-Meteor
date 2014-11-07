@@ -48,6 +48,6 @@ function initialSortable() {
     })
 }
 
-Meteor.startup(function () {
+Template.lane.rendered = function() {
   initialSortable();
-});
+};
