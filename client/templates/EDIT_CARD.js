@@ -7,7 +7,7 @@ EDIT_CARD = function (template,card_id) {
     return ''
 
 +   '<div class="card_header_edit">'
-+       '<textarea rows=1>'+title+'</textarea>'
++       '<textarea class="title" rows=1>'+title+'</textarea>'
 +       '<div class="edit_card"></div>'
 +   '</div>'
 +   '<div class="card_body">'
