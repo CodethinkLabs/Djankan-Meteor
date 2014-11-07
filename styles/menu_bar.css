@@ -13,9 +13,42 @@
     border-bottom-style: solid;
 }
 
+.board_title {
+    float:left;
+}
+
+.filter_menu {
+    font-size: 14px;
+    padding-left: 25px;
+    padding-top: 4px;
+    float:left;
+}
+
 .logo {
     position: absolute;
     right: 0;
     bottom: 0;
     padding-right: 8px;
+}
+
+select {
+    padding:1px;
+    margin: 0;
+    width: 200px;
+    -webkit-border-radius:1px;
+    -moz-border-radius:1px;
+    border-radius:1px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #eee;
+    color: #333;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+
 }

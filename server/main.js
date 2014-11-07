@@ -49,15 +49,22 @@ Meteor.startup(function() {
     Checklists.remove({});
     Assignees.remove({});
     Users.remove({});
+    Milestones.remove({});
+    Buckets.remove({});
+    Filters.remove([]);
     users_url = HOST+API+'users/';
     board_url = HOST+API+'boards/'+BOARD_ID+'/';
     lanes_url = board_url+'lanes/';
     cards_url = board_url+'cards/';
+    milestones_url = board_url+'milestones/'
+    buckets_url = board_url+'buckets/'
     // get fresh data
     getToCollection(users_url,Users);
     boardToCollection(board_url,Boards);
     lanesToCollection(lanes_url,Lanes);
     getToCollection(cards_url,Cards);
+    getToCollection(milestones_url,Milestones);
+    getToCollection(buckets_url,Buckets);
     // get assignees and checklists for each card in board
     cards = Cards.find({});
     // keep track of the highest cardNumber for making new cards
@@ -70,5 +77,17 @@ Meteor.startup(function() {
         assignees_url = HOST+API+'card/'+card_id+'/assignees/';
         getToCollection(checklist_url,Checklists);
         getToCollection(assignees_url,Assignees);
+    });
+    var index = 0;
+    var milestones = Milestones.find({});
+    milestones.forEach(function (milestone) {
+        var filter = {type: "Milestone", id: index, title: milestone.title, filter_id: milestone.id}
+        index++;
+        Filters.insert(filter);
+    });
+    var buckets = Buckets.find({});
+    buckets.forEach(function (bucket) {
+        var filter = {type: "Bucket", id: index, title: bucket.title, filter_id: bucket.id}
+        Filters.insert(filter);
     });
 });
