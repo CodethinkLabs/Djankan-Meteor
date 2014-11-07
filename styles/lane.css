@@ -5,13 +5,12 @@
     margin-right: 8px ;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    min-height: 100%;
+    height: 100%;
     box-shadow: 1px 0px 1px #ccc;
 }
 
 .lane_header {
     cursor: move;
-    position: relative;
     color: #1A766F;
     font-size: 24px;
     padding-top: 8px;
@@ -41,6 +40,8 @@
 
 .list-area {
     padding: 10px ;
+    margin: 0;
+    min-height: 90%;
 }
 .lane_header:hover .add_card a {
     opacity: 1;
@@ -54,4 +55,8 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     min-height: 100%;
+}
+.lane-fill {
+    height:auto;
+    background-color: #000;
 }
