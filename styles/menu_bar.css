@@ -24,6 +24,12 @@
     float:left;
 }
 
+.reset_button {
+    float:left;
+    padding-top: 0px;
+    padding-left: 20px;
+}
+
 .logo {
     position: absolute;
     right: 0;

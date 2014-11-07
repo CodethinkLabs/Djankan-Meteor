@@ -6,3 +6,9 @@ Template.menu_bar.helpers({
             return "Kanban";
     }
 });
+
+Template.menu_bar.events({
+    'click input.add': function() {
+        Meteor.call('refreshData');
+    }
+});
