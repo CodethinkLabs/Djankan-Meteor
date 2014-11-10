@@ -72,8 +72,8 @@ Meteor.methods({
             card_id = card.header.cardNumber;
             if( card_id > nextCardNumber)
                 nextCardNumber=card_id;
-            checklist_url = HOST+API+'card/'+card_id+'/checklists/';
-            assignees_url = HOST+API+'card/'+card_id+'/assignees/';
+            checklist_url = HOST+API+'card/'+card.id+'/checklists/';
+            assignees_url = HOST+API+'card/'+card.id+'/assignees/';
             getToCollection(checklist_url,Checklists);
             getToCollection(assignees_url,Assignees);
         });

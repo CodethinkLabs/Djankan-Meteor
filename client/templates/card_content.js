@@ -1,11 +1,10 @@
 Template.card_content.helpers({
-    assignees: function(card_number) {
-        return Assignees.find({card: card_number})
+    assignees: function(card_id) {
+        return Assignees.find({card: card_id})
     },
     assigneeName: function(assignee_id) {
-        person_id = Assignees.findOne({_id:assignee_id}).person;
-        name = Users.findOne({id:person_id}).username;
-        return name;
+        assignee = Assignees.findOne({id: assignee_id}).person;
+        return Users.findOne({id: assignee}).username;
     },
     checklists: function(card_number) {
         return Checklists.find({card: card_number})

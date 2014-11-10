@@ -5,12 +5,10 @@
     <div class="card_body">
         {{ description }} <br><br>
         Assignee(s):
-        {{#each assignees header.cardNumber }}
-            {{ assigneeName _id }}
-        {{/each }} <br>
-        Checklist:<ul class="checklist">
-        {{#each checklists header.cardNumber }}
-            <li class="checklist_item">{{ checklistDescription _id }}</li>
-        {{/each }}</ul>
+        <ul>
+        {{#each assignees id }}
+            <li>{{ assigneeName id }}</li>
+        {{/each }}
+        </ul>
     </div>
 </template>
