@@ -88,6 +88,7 @@ Meteor.methods({
         buckets.forEach(function (bucket) {
             var filter = {type: "Bucket", id: index, title: bucket.title, filter_id: bucket.id}
             Filters.insert(filter);
+            index++;
         });
     }
 });
