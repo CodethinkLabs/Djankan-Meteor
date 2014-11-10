@@ -6,11 +6,11 @@ Template.card_content.helpers({
         assignee = Assignees.findOne({id: assignee_id}).person;
         return Users.findOne({id: assignee}).username;
     },
-    checklists: function(card_number) {
-        return Checklists.find({card: card_number})
+    checklists: function(card_id) {
+        return Checklists.find({card: card_id})
     },
     checklistDescription: function(checklist_id) {
-        return Checklists.findOne({_id:checklist_id}).description;
+        return Checklists.findOne({id: checklist_id}).description;
     }
 });
 

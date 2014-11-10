@@ -4,10 +4,13 @@
     </div>
     <div class="card_body">
         {{ description }} <br><br>
-        Assignee(s):
-        <ul>
+        Checklist:<ul class="checklist">
+        {{#each checklists id }}
+             <li class="checklist_item">{{ checklistDescription id }}</li>
+        {{/each }}</ul>
+        Assignee(s):<ul class="assigneelist">
         {{#each assignees id }}
-            <li>{{ assigneeName id }}</li>
+            <li class="assignee_item">{{ assigneeName id }}</li>
         {{/each }}
         </ul>
     </div>
