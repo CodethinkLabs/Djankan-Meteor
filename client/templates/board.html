@@ -1,4 +1,10 @@
 <template name="board">
+    <style>
+        .board {
+            width: {{ boardWidth }}px;
+        }
+    </style>
+
     <div class="board">
         {{ #each lanes }}
             {{ > lane }}

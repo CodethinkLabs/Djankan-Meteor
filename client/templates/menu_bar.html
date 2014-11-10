@@ -1,16 +1,19 @@
 <template name="menu_bar">
     <div class="menu_bar">
-        <div class="board_title">
+        <span class="board_title">
             {{ boardName }}
-        </div>
-        <div class="filter_menu">
+        </span>
+        <span>
+            <a class="new_lane_link" href="#">new lane</a>
+        </span>
+        <span class="filter_menu">
             {{> milestone_bucket_filter }}
-        </div>
-        <div class="reset_button">
+        </span>
+        <span class="reset_button">
             <input type="button" class="add" value="Repull from API" />
-        </div>
-        <div class="logo">
+        </span>
+        <span class="logo">
             <img src="/images/logo.gif" alt="Codethink" height="28" width="130">
-        </div>
+        </span>
     </div>
 </template>
