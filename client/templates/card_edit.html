@@ -1,0 +1,15 @@
+<template name="card_edit">
+    <div class="card_header_edit">
+        <textarea name="title" rows=1>{{title}}</textarea>
+    </div>
+    <div class="card_body">
+        <textarea name="descr" cols=30 rows=5>{{description}}</textarea>
+        <br>
+        <input type="checkbox" id="{{_id}}archive">Archive<br>
+        <button class="save_card_edit">Save</button>
+        <button class="discard_card_edit">Discard</button><br>
+        Assignee(s):
+        <br>
+        Checklist:
+    </div>
+</template>

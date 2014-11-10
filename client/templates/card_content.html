@@ -1,0 +1,16 @@
+<template name="card_content">
+    <div class="card_header"><b>{{ header.cardNumber }}: {{ title }}</b>
+        <div class="edit_card"><a class="edit_card_link" href="#">&#x270E;</a></div>
+    </div>
+    <div class="card_body">
+        {{ description }} <br><br>
+        Assignee(s):
+        {{#each assignees header.cardNumber }}
+            {{ assigneeName _id }}
+        {{/each }} <br>
+        Checklist:<ul class="checklist">
+        {{#each checklists header.cardNumber }}
+            <li class="checklist_item">{{ checklistDescription _id }}</li>
+        {{/each }}</ul>
+    </div>
+</template>

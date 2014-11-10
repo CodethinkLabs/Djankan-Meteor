@@ -28,6 +28,9 @@
     background-color: #F9BC8D;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
+    border-bottom-width:1px;
+    border-bottom-color:#dea87e;
+    border-bottom-style: solid;
 }
 
 .edit_card a {
@@ -69,3 +72,6 @@
     list-style: none;
 }
 
+.discard_card_edit {
+    float: right;
+}
