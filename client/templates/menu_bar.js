@@ -32,5 +32,13 @@ Template.menu_bar.events({
         };
         Meteor.call('postlane',blankLane);
         Meteor.call('updateLanes');
+    },
+    'click .buckets': function() {
+        Session.set('menu_edit',0);
+        Session.set('menu','bucket');
+    },
+    'click .milestones': function() {
+        Session.set('menu_edit',0);
+        Session.set('menu','milestone');
     }
 });

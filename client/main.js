@@ -48,6 +48,9 @@ function initialSortable() {
     })
 }
 
+// set the menu to be off by default
+Session.set("menu",0);
+
 Template.lane.rendered = function() {
   initialSortable();
 };

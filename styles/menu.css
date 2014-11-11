@@ -1,0 +1,58 @@
+.menu_content {
+    width: 600px;
+    margin-top: 64px;
+    background-color: white;
+    z-index: 200;
+    position: absolute;
+    border-width:1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    box-shadow: 1px 1px 16px black;
+}
+
+.menu_header {
+    padding: 16px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding:  8px 8px 0px 8px;
+    background-color: #a7d239;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-width:1px;
+    border-bottom-color:#8DB527;
+    border-bottom-style: solid;
+}
+
+.menu_header a {
+    text-decoration: none;
+    float: right;
+    color: white;
+}
+
+.menu_body {
+    padding: 16px;
+}
+
+.editor {
+    width: 90%
+}
+
+.edit {
+    text-decoration: none;
+    float: right;
+}
+
+.edit:hover {
+    text-decoration: underline;
+}
+
+.menu_content textarea {
+    vertical-align: top;
+    float:right;
+}
+
+.discard {
+    float: right;
+}

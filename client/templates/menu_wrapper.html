@@ -1,0 +1,9 @@
+<template name="menu_wrapper">
+    {{#if menuOn}}
+        {{#if isBucket }}
+            {{> menu_content kind="bucket" }}
+        {{ else }}
+            {{> menu_content kind="milestone" }}
+        {{/if }}
+    {{/if }}
+</template>
