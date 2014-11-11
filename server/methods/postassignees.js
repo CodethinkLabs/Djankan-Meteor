@@ -4,8 +4,8 @@ Meteor.methods({
         user = Users.findOne({id: parseInt(user_id)});
         url = HOST+API+'card/'+ card.id +'/assignees/';
         assignee = {
-            "card": card.id, 
-            "person": user.id, 
+            "card": card.id,
+            "person": user.id,
             "assignee_role": "NORM"
         };
         console.log(assignee);
