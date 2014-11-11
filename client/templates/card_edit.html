@@ -6,10 +6,19 @@
         <textarea name="descr" cols=30 rows=5>{{description}}</textarea>
         <br>
         <input type="checkbox" id="{{_id}}archive">Archive<br>
+            Assignee(s):<ul class="assigneelist">
+            {{#each assignees id }}
+                <li class="assignee_item">{{ assigneeName id }}</li>
+            {{/each }}
+        </ul>
+        <select id="assignee_picker">
+            {{#each users}}
+                <option value="{{ id }}">{{ username }}</option>
+            {{/each }}
+        </select><button class="add_assignee">add</button>
+        Checklist:
+        <br>
         <button class="save_card_edit">Save</button>
         <button class="discard_card_edit">Discard</button><br>
-        Assignee(s):
-        <br>
-        Checklist:
     </div>
 </template>
