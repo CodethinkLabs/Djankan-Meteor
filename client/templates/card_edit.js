@@ -17,7 +17,8 @@ Template.card_edit.events = {
         card_mongo_id = this._id;
         var selectBox = document.getElementById("assignee_picker");
         var selectValue = selectBox.options[selectBox.selectedIndex].value;
-        Meteor.call('postassignee', card_mongo_id, selectValue);
+        Meteor.call('postAssignee', card_mongo_id, selectValue);
+        Meteor.call('updateAssignees', card_mongo_id);
     }
 }
 
