@@ -72,6 +72,37 @@
     list-style: none;
 }
 
+.assignee_header {
+    background-color: #84CCC7;
+    height: 25px;
+    line-height: 30px;
+    padding-left: 3px;
+    border: 0px ;
+    border-style: solid;
+    border-color: #333;
+}
+
+.assignee_container {
+    height: 18px;
+    line-height: 18px;
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.remove_assignee a {
+    text-decoration: none;
+    color: red;
+    padding-left: 4px;
+    width: 8%;
+}
+
+.assignee_item_edit {
+    padding-left:4px;
+    width: 90%;
+    float: left;
+}
+
 .discard_card_edit {
     float: right;
 }

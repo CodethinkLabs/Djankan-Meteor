@@ -1,7 +1,6 @@
 Meteor.methods({
-    updateAssignees: function(card_mongo_id) {
-        card = Cards.findOne({_id: card_mongo_id});
-        url = HOST+API+'card/'+ card.id +'/assignees/';
+    updateAssignees: function(card_id) {
+        url = HOST+API+'card/'+ card_id +'/assignees/';
         try {
             var r = HTTP.call("GET", url);
             var respJson = JSON.parse(r.content);
