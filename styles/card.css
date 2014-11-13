@@ -1,13 +1,14 @@
 .card {
     margin-bottom: 5px ;
     word-wrap: break-word;
-    background-color: white;
+    background-color: #FFEAD9;
     border: 0px ;
     border-style: solid;
     border-color: #333;
     border-radius: 8px;
-    box-shadow: 1px 1px 1px #ccc;
+    box-shadow: 1px 2px 1px #ccc;
     list-style: none;
+    padding-bottom: 1px;
 }
 
 .card_header {
@@ -20,6 +21,9 @@
     border-bottom-width:1px;
     border-bottom-color:#dea87e;
     border-bottom-style: solid;
+    height: 14px;
+    line-height: 22px;
+
 }
 .card_header_edit {
     height: 24px;
@@ -48,12 +52,17 @@
     height: 16px;
 }
 
+.description {
+    font-size: 14px;
+}
+
 .card_body {
-    margin: 8px;
+    margin: 4px;
 }
 
 .checklist_item {
-    font-size: 12px;
+    font-size: 14px;
+    padding-left:4px;
     list-style:'disc';
 }
 .card:hover .edit_card a {
@@ -72,6 +81,29 @@
     list-style: none;
 }
 
+.subtask_progress_bar_container {
+    height: 22px;
+    margin-left: 14px;
+    margin-right: 14px;
+    background-color: #ccc;
+    position: relative;
+}
+
+.subtask_progress_bar {
+    height: 22px;
+    background-color: #86BCBC;
+    border: 0px;
+}
+
+.subtask_progress_bar_label {
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    z-index:1;
+    font-size: 15px;
+    color: black;
+}
+
 .assignee_header {
     background-color: #84CCC7;
     height: 25px;
@@ -85,24 +117,48 @@
 .assignee_container {
     height: 18px;
     line-height: 18px;
-    width: 100%;
-    overflow: hidden;
     font-size: 14px;
+    display: inline-block;
+}
+
+.assignee_container_edit {
+    height: 18px;
+    line-height: 18px;
+    font-size: 14px;
+    margin-bottom: 1px;
+}
+
+.assignee_picture {
+    background-color: #84CCC7;
+    width: 18px;
+    height: 18px;
+    float: left;
+}
+
+.assignee_item {
+    font-size: 14px;
+    padding-left: 4px;
+    padding-right: 4px;
+    float: left;
+    line-height: 20px;
 }
 
 .remove_assignee a {
     text-decoration: none;
     color: red;
-    padding-left: 4px;
-    width: 8%;
+    padding-right: 4px;
+    float: right;
 }
 
 .assignee_item_edit {
     padding-left:4px;
-    width: 90%;
     float: left;
 }
 
 .discard_card_edit {
-    float: right;
+    float: left;
+}
+
+.spacer {
+    height: 6px;
 }

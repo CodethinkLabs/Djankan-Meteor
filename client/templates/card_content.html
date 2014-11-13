@@ -3,15 +3,24 @@
         <div class="edit_card"><a class="edit_card_link" href="#">&#x270E;</a></div>
     </div>
     <div class="card_body">
-        {{ description }} <br><br>
-        Checklist:<ul class="checklist">
-        {{#each checklists id }}
-             <li class="checklist_item">{{ checklistDescription id }}</li>
-        {{/each }}</ul>
-        Assignee(s):<ul class="assigneelist">
+        <div class="description">
+            {{ shortDescription id }}
+        </div>
+        <div class="spacer"></div>
+        {{#if checklistTotal id }}
+            <div class="subtask_progress_bar_container">
+                <div class="subtask_progress_bar" style="width: {{ checklistPercentComplete id }}%"></div>
+                <div class="subtask_progress_bar_label">
+                    Checklist: {{ checklistTotalTicked id }} / {{ checklistTotal id }}
+                </div>
+            </div>
+        <div class="spacer"></div>
+        {{/if}}
         {{#each assignees id }}
-            <li class="assignee_item">{{ assigneeName id }}</li>
+            <div class="assignee_container" style="background-color:#E6FAF8">
+                <div class="assignee_picture"></div>
+                <div class="assignee_item">{{ assigneeName id }}</div>
+            </div>
         {{/each }}
-        </ul>
     </div>
 </template>

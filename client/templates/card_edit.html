@@ -6,11 +6,11 @@
         <textarea name="descr" cols=30 rows=5>{{description}}</textarea>
         <br>
         <input type="checkbox" id="{{_id}}archive">Archive<br>
-            <div class="assignee_header">
-                Assignee(s):
-            </div>
+        Checklist:
+        <div class="spacer"></div>
             {{#each assignees id }}
-                <div class="assignee_container" style="background-color:{{ getAssigneeColor }}">
+                <div class="assignee_container_edit" style="background-color:{{ getAssigneeColor }}">
+                    <div class="assignee_picture"></div>
                     <div class="assignee_item_edit">
                         {{ assigneeName id }}
                     </div>
@@ -26,8 +26,7 @@
                 <option value="{{ id }}">{{ username }}</option>
             {{/each }}
         </select><button class="add_assignee">add</button>
-        Checklist:
-        <br>
+        <div class="spacer"></div>
         <button class="save_card_edit">Save</button>
         <button class="discard_card_edit">Discard</button><br>
     </div>

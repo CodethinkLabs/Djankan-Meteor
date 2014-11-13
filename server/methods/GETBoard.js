@@ -34,6 +34,11 @@ Meteor.methods({
             Checklists.remove({card:card.id});
             getToCollection(checklist_url,Checklists);
             getToCollection(assignees_url,Assignees);
+            checkListItems = Checklists.find({})
+            checkListItems.forEach( function(checkListItem) {
+                var ticked = Meteor.call('getEventTicked', checkListItem.id);
+                Checklists.update(checkListItem, {'$set' : {'checked' : ticked }})
+            });
         });
         // set board to active and update nextCardNumber
         Boards.update(board,{ 
