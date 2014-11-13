@@ -23,7 +23,7 @@ function initialSortable() {
         }
     })
 
-    $('ul').sortable({
+    $('.list-area').sortable({
         handle: '.card_header',
         placeholder: 'card_placeholder',
         connectWith: 'ul',
