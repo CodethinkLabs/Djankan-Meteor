@@ -10,8 +10,9 @@ $(window).scroll(function(){
 
 Template.menu_bar.helpers({
     boardName: function() {
-        if(Boards.findOne({}))
-            return Boards.findOne({}).title;
+        boardId = Session.get('boardId');
+        if(boardId)
+            return Boards.findOne({id:boardId}).title;
         else
             return "Kanban";
     }

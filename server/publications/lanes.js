@@ -1,3 +1,3 @@
-Meteor.publish('lanes', function(board_id) {
-  return Lanes.find({board:board_id});
+Meteor.publish('lanes', function(boardId) {
+  return Lanes.find({board:boardId});
 });

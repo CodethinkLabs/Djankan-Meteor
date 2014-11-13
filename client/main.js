@@ -47,9 +47,14 @@ function initialSortable() {
         }
     })
 }
+// until boards and users are got from server
+// set the board/milestones menu to be off by default
+Session.set('menu',0);
 
-// set the menu to be off by default
-Session.set("menu",0);
+Meteor.subscribe('boards', function() {
+});
+Meteor.subscribe('allUsers', function() {
+});
 
 Template.lane.rendered = function() {
   initialSortable();

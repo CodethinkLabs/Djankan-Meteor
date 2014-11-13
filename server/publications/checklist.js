@@ -4,7 +4,9 @@ Meteor.publish('checklistByCard', function(card_id) {
 
 Meteor.publish('checklistByBoard', function(board_id) {
     cards = Cards.find({board: board_id});
+    boardCards = new Array;
     cards.forEach( function(card) {
         boardCards.push(card.id);
     });
-    return Checklists.find({card: {$in: boardCards}})
+    return Checklists.find({card: {$in: boardCards}});
+});
