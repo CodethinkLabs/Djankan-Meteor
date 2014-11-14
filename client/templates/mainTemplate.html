@@ -1,0 +1,9 @@
+<template name="mainTemplate">
+    {{> menu_bar }}
+    {{> menu_wrapper }}
+    {{#if chosenBoard }}
+        {{> board }}
+    {{ else}}
+        {{> dash }}
+    {{/if }}
+</template>

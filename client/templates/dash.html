@@ -1,0 +1,12 @@
+<template name="dash">
+    <div class="dash">
+    <h1>Select a board:</h1>
+        <ul class="boardList">
+        {{#each boards }}
+            <li>
+                <a class="selectBoard" href="#">{{id}}: {{title}}</a>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+</template>

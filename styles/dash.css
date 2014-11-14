@@ -1,0 +1,19 @@
+.dash {
+    min-width: 100%;
+}
+
+.dash h1 {
+    padding: 16px;
+    margin: 0px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dash a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.dash a:hover {
+    text-decoration: underline;
+}
