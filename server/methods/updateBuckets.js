@@ -1,7 +1,7 @@
 // update lanes when they are rearranged
 Meteor.methods({
-    updateBuckets: function() {
-        url=HOST+API+'boards/'+BOARD_ID+'/buckets/';
+    updateBuckets: function(boardId) {
+        url=HOST+API+'boards/'+boardId+'/buckets/';
         try {
             var r = HTTP.call("GET", url);
             var respJson = JSON.parse(r.content)

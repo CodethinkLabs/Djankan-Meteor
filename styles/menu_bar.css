@@ -1,7 +1,6 @@
 .menu_bar {
     color: white;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 14px;
     padding-top: 4px;
     padding-left: 4px;
     position: relative;
@@ -13,19 +12,23 @@
     border-bottom-style: solid;
 }
 
+.menu_bar h1 {
+    margin: 0px;
+    margin-right: 16px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 .board_title {
     float:left;
 }
 
 .filter_menu {
     font-size: 14px;
-    padding-left: 25px;
-    padding-top: 4px;
-    float:left;
+    padding: 4px;
 }
 
 .reset_button {
-    float:left;
     padding-top: 0px;
     padding-left: 20px;
 }
@@ -49,7 +52,7 @@
 select {
     padding:1px;
     margin: 0;
-    width: 200px;
+    width: 150px;
     -webkit-border-radius:1px;
     -moz-border-radius:1px;
     border-radius:1px;

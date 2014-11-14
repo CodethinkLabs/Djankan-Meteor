@@ -1,0 +1,9 @@
+<template name="milestone_filter">
+Milestone:
+<select id="milestone_picker">
+        <option value="0">No Milestone</option>
+        {{#each milestones}}
+            <option value="{{ id }}">{{ title }}</option>
+        {{/each }}
+</select>
+</template>

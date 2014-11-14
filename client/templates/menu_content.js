@@ -56,44 +56,46 @@ Template.menu_content.events({
     },
     "click .save": function() {
         kind=Session.get("menu");
+        boardId=Session.get("boardId");
         title = $('.editor').find('textarea[name="title"]').val();
         descr = $('.editor').find('textarea[name="descr"]').val();
         if(kind=="bucket") {
             console.log(this._id)
             console.log(this)
-            Meteor.call("putbucket",this._id,title,descr);
-            Meteor.call("updateBuckets");
+            Meteor.call("putbucket",boardId,this._id,title,descr);
+            Meteor.call("updateBuckets",boardId);
             Session.set("menu_edit",0);
         }
         else {
-            Meteor.call("putmilestone",this._id,title,descr);
-            Meteor.call("updateMilestones");
+            Meteor.call("putmilestone",boardId,this._id,title,descr);
+            Meteor.call("updateMilestones",boardId);
             Session.set("menu_edit",0);
         } 
     },
         
     "click .new": function() {
         kind = this.kind;
+        boardId=Session.get("boardId");
         if(kind=="bucket") {
             blankBucket = {
-                "board": 1, 
+                "board": boardId, 
                 "title": "New Bucket", 
                 "colour": "blue", 
                 "description": "description"
             }
-            Meteor.call("postbucket",blankBucket);
-            Meteor.call("updateBuckets");
+            Meteor.call("postbucket",blankBucket,boardId);
+            Meteor.call("updateBuckets",boardId);
         }
         else {
             blankMilestone = {
-                "board": 1,
+                "board": boardId,
                 "title": "New Milestone", 
                 "dueDate": "2014-11-10T09:16:29Z", 
                 "colour": "red", 
                 "description": "description"
             };
-            Meteor.call("postmilestone",blankMilestone);
-            Meteor.call("updateMilestones");
+            Meteor.call("postmilestone",blankMilestone,boardId);
+            Meteor.call("updateMilestones",boardId);
         }
     }
 });

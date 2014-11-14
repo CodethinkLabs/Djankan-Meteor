@@ -6,8 +6,9 @@ Template.card_edit.events = {
         title = $('#'+_id).find('textarea[name="title"]').val();
         descr = $('#'+_id).find('textarea[name="descr"]').val();
         archived = $('#'+_id+'archive').is(':checked');
+        boardId = Session.get('boardId');
         Meteor.call('putcard',_id,title,descr,archived);
-        Meteor.call('updateCards');
+        Meteor.call('updateCards',boardId);
         // when edit set to 0 in session card_edit template is removed
         // and card_content rendered
         Session.set("edit",0);

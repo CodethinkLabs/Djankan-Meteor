@@ -1,19 +1,7 @@
 Template.lane.helpers({
     cards: function(mongo_id) {
         laneID = Lanes.findOne({_id: mongo_id}).id;
-        var filter = Session.get('currentFilter');
-        if (filter) {
-            switch (filter.type)
-            {
-            case "Milestone":
-                return Cards.find({lane: laneID, milestone: parseInt(filter.filter_id)});
-            case "Bucket":
-                return Cards.find({lane: laneID, bucket: parseInt(filter.filter_id)});
-            }
-        }
-        else {
-            return Cards.find({lane: laneID})
-        }
+        return Cards.find({lane: laneID})
     },
     lanetitle: function(mongo_id) {
         title = Lanes.findOne({_id:mongo_id}).title;
@@ -48,7 +36,8 @@ Template.lane.events = {
             "lastUser": 1, 
             "supersededBy": null
         };
-        Meteor.call('postcard',blankCard);
-        Meteor.call('updateCards');
+        boardId = Session.get('boardId');
+        Meteor.call('postcard',blankCard,boardId);
+        Meteor.call('updateCards',boardId);
     }
 }

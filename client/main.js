@@ -6,6 +6,7 @@ function initialSortable() {
         helper: 'clone',
         update: function(event, ui) {
             // put lane Ids in an array according to their order on the page
+            var boardId = Session.get('boardId');
             var laneIds = $(this).sortable('toArray');
             var lanes = Lanes.find({});
             // for each lane id find it's lane in the collection and update it's position
@@ -15,8 +16,8 @@ function initialSortable() {
                 lane.position=position;
                 Lanes.update({_id:lane._id},lane);
             });
-            Meteor.call('putlanes');
-            Meteor.call('updateLanes');
+            Meteor.call('putlanes',boardId);
+            Meteor.call('updateLanes',boardId);
         },
         stop: function(event, ui) {
             initialSortable();
@@ -38,10 +39,11 @@ function initialSortable() {
             var newLane = Lanes.findOne({_id:newLaneId});
             // change card lane attr
             if(newLane.id!=card.lane){
+                var boardId = Session.get('boardId');
                 // put card
                 Meteor.call('changeLane',cardId,newLane.id);
                 // update cards
-                Meteor.call('updateCards');
+                Meteor.call('updateCards',boardId);
             }
             initialSortable();
         }
@@ -50,6 +52,8 @@ function initialSortable() {
 // set the board/milestones menu to be off by default
 Session.set('menu',0);
 Session.set('boardId',0);
+Session.set('bucketId',0);
+Session.set('milestoneId',0);
 
 Meteor.subscribe('boards', function() {
 });

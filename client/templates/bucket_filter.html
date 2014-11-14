@@ -1,0 +1,9 @@
+<template name="bucket_filter">
+Bucket:
+<select id="bucket_picker">
+        <option value="0">No Bucket</option>
+        {{#each buckets}}
+            <option value="{{ id }}">{{ title }}</option>
+        {{/each }}
+</select>
+</template>

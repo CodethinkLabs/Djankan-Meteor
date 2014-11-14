@@ -10,7 +10,7 @@ $(window).scroll(function(){
 
 Template.menu_bar.helpers({
     boardName: function() {
-        boardId = Session.get('boardId');
+        var boardId = Session.get('boardId');
         if(boardId)
             return Boards.findOne({id:boardId}).title;
         else
@@ -20,7 +20,8 @@ Template.menu_bar.helpers({
 
 Template.menu_bar.events({
     'click input.add': function() {
-        Meteor.call('refreshData');
+        var boardId = Session.get('boardId');
+        Meteor.call('GETBoard',boardId);
     },
     'click .new_lane_link': function() {
         blankLane = {

@@ -1,22 +1,23 @@
 <template name="menu_bar">
     <div class="menu_bar">
         <span class="board_title">
-            {{ boardName }}
-        </span>
-        <span class="filter_menu">
-            {{> milestone_bucket_filter }}
+           <h1>{{ boardName }}</h1>
         </span>
         <span class="board_menu">
             {{> board_picker }}
         </span>
-        <span class="reset_button">
-            <input type="button" class="add" value="Refresh All Data" />
+        <span class="filter_menu">
+            {{> bucket_filter }}
+            {{> milestone_filter }}
         </span>
         <span>
             <a class="buckets" href="#">buckets</a>
         </span>
         <span>
             <a class="milestones" href="#">milestones</a>
+        </span>
+        <span class="reset_button">
+            <input type="button" class="add" value="Refresh Board" />
         </span>
         <span class="logo">
             <img src="/images/logo.gif" alt="Codethink" height="28" width="130">

@@ -1,9 +1,7 @@
 var laneSub;
-var cardSub;
 var bucketSub;
 var milestoneSub;
 var checklistSub;
-var assigneesSub;
 
 // remove old subscriptions and subscribe to a new board
 subscribeToBoard = function(boardId) {
@@ -12,10 +10,6 @@ subscribeToBoard = function(boardId) {
         laneSub.stop();
     var board = Boards.findOne({id:boardId});
     laneSub = Meteor.subscribe('lanes', boardId, function() {
-    });
-    if(cardSub)
-        cardSub.stop();
-    cardSub = Meteor.subscribe('cardsByBoard', boardId, function() {
     });
     if(bucketSub)
         bucketSub.stop();
@@ -29,8 +23,5 @@ subscribeToBoard = function(boardId) {
         checklistSub.stop();
     checklistSub = Meteor.subscribe('checklistByBoard', boardId, function() {
     });
-    if(assigneesSub)
-        assigneesSub.stop();
-    assigneesSub = Meteor.subscribe('assigneesByBoard', boardId, function() {
-    });
+    updateCardSub();
 }

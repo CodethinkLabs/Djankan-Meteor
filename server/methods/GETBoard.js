@@ -24,18 +24,21 @@ Meteor.methods({
         // keep track of the highest cardNumber for making new cards
         var nextCardNumber=0;
         cards.forEach(function (card) {
-            cardNumber = card.header.cardNumber;
-            if( cardNumber > nextCardNumber)
+            var cardNumber = card.header.cardNumber;
+            if( cardNumber > nextCardNumber) {
                 nextCardNumber=cardNumber;
-            checklist_url = HOST+API+'card/'+card.id+'/checklists/';
-            assignees_url = HOST+API+'card/'+card.id+'/assignees/';
+            }
+            var checklist_url = HOST+API+'card/'+card.id+'/checklists/';
+            var assignees_url = HOST+API+'card/'+card.id+'/assignees/';
+            Assignees.remove({card:card.id});
+            Checklists.remove({card:card.id});
             getToCollection(checklist_url,Checklists);
             getToCollection(assignees_url,Assignees);
         });
         // set board to active and update nextCardNumber
-        activeBoard = board;
-        activeBoard.active = true;
-        activeBoard.nextCardNumber = nextCardNumber;
-        Boards.update(board,activeBoard)
+        Boards.update(board,{ 
+            '$set': {'active':true},
+            '$set': {'nextCardNumber':nextCardNumber}
+        });
     }
 });

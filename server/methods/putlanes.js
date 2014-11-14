@@ -1,11 +1,11 @@
 // method to put a card when the title description or archive status
 // is edited on the GUI
 Meteor.methods({
-    putlanes: function() {
-        lanes=Lanes.find({});
+    putlanes: function(boardId) {
+        lanes=Lanes.find({board:boardId});
         lanes.forEach(function (lane) {
             ID = lane.id;
-            url = HOST+API+'boards/'+BOARD_ID+'/lanes/'+ID+'/';
+            url = HOST+API+'boards/'+boardId+'/lanes/'+ID+'/';
             try {
                 r = HTTP.call("PUT",url,{data: lane});
             }

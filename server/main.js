@@ -7,7 +7,8 @@ Meteor.startup(function() {
     //add active=false
     boards = Boards.find({})
     boards.forEach( function(board) {
-        board.active=false;
+        Boards.update(board, {'$set' : {'active' : false }})
+        Boards.update(board, {'$set' : {'nextCardNumber' : 0 }})
     });
     //get users
     users_url = HOST+API+'users/';
