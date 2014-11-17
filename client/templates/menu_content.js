@@ -1,15 +1,19 @@
-
+// set left of menu_bar to be left of screen
 $(window).scroll(function(){
-    var leftMargin = $(window).width()/2 - 300;
+    var leftBound = $(window).width()/2 - 300;
+    var rightBound = leftBound+$(".board").width()-$(window).width();
+    var leftEdge = $(this).scrollLeft()+leftBound;
     $('.menu_content').css({
-        'left': Math.min($(this).scrollLeft() + leftMargin,$(".board").width() - $(window).width() + leftMargin)
+        'left': Math.max(leftBound,Math.min(leftEdge,rightBound))
     });
 });
 
 $( window ).resize(function() {
-    var leftMargin = $(window).width()/2 - 300;
+    var leftBound = $(window).width()/2 - 300;
+    var rightBound = leftBound+$(".board").width()-$(window).width();
+    var leftEdge = $(this).scrollLeft()+leftBound;
     $('.menu_content').css({
-        'left': Math.min($(this).scrollLeft() + leftMargin,$(".board").width() - $(window).width() + leftMargin)
+        'left': Math.max(leftBound,Math.min(leftEdge,rightBound))
     });
 });
 

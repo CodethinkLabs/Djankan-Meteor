@@ -1,7 +1,10 @@
-// this makes the menu_bar stay fixed when scrolling sideways
+// set left of menu_bar to be left of screen
 $(window).scroll(function(){
+    var leftEdge = $(this).scrollLeft();
+    var rightBound = $(".board").width()-$(window).width();
+    var leftBound = 0;
     $('.menu_bar').css({
-        'left': Math.min($(this).scrollLeft(),$(".board").width() - $(window).width())
+        'left': Math.max(leftBound,Math.min(leftEdge,rightBound))
     });
 });
 
