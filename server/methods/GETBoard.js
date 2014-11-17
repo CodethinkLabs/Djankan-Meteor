@@ -42,8 +42,7 @@ Meteor.methods({
         });
         // set board to active and update nextCardNumber
         Boards.update(board,{ 
-            '$set': {'active':true},
-            '$set': {'nextCardNumber':nextCardNumber}
+            '$set': {'active':true,'nextCardNumber':nextCardNumber}
         });
     }
 });
