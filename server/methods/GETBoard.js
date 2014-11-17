@@ -12,7 +12,7 @@ Meteor.methods({
         var users_url = HOST+API+'users/';
         var board_url = HOST+API+'boards/'+boardId+'/';
         var lanes_url = board_url+'lanes/';
-        var cards_url = board_url+'cards/';
+        var cards_url = board_url+'cards/?archived=false';
         var buckets_url = board_url+'buckets/';
         var milestones_url = board_url+'milestones/';
         sortToCollection(lanes_url,Lanes);
