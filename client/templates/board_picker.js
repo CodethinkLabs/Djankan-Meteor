@@ -1,5 +1,10 @@
 Template.board_picker.helpers({
-    boards: Boards.find({})
+    boards: Boards.find({}),
+    // default select box to current board
+    selectCurrent: function(id) {
+        if(Session.get("boardId")==id)
+            return 'selected';
+    }
 });
 
 Template.board_picker.events({

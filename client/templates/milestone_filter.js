@@ -1,5 +1,9 @@
 Template.milestone_filter.helpers({
-    milestones: Milestones.find({})
+    milestones: Milestones.find({}),
+    selectCurrent: function(id) {
+        if(Session.get("milestoneId")==id)
+            return 'selected';
+    } 
 });
 
 Template.milestone_filter.events({

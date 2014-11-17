@@ -1,5 +1,9 @@
 Template.bucket_filter.helpers({
-    buckets: Buckets.find({})
+    buckets: Buckets.find({}),
+    selectCurrent: function(id) {
+        if(Session.get("bucketId")==id)
+            return 'selected';
+    } 
 });
 
 Template.bucket_filter.events({

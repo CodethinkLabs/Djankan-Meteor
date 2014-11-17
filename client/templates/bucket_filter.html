@@ -3,7 +3,7 @@ Bucket:
 <select id="bucket_picker">
         <option value="0">No Bucket</option>
         {{#each buckets}}
-            <option value="{{ id }}">{{ title }}</option>
+            <option value="{{ id }}" {{selectCurrent id}}>{{ title }}</option>
         {{/each }}
 </select>
 </template>

@@ -3,7 +3,7 @@ Milestone:
 <select id="milestone_picker">
         <option value="0">No Milestone</option>
         {{#each milestones}}
-            <option value="{{ id }}">{{ title }}</option>
+            <option value="{{ id }}" {{selectCurrent id}}>{{ title }}</option>
         {{/each }}
 </select>
 </template>
