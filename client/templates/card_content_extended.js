@@ -1,4 +1,4 @@
-Template.card_content.helpers({
+Template.card_content_extended.helpers({
     assignees: function(card_id) {
         return Assignees.find({card: card_id});
     },
@@ -10,24 +10,8 @@ Template.card_content.helpers({
         else
             return;
     },
-    shortDescription: function(card_id) {
-        var maxLength = 113;
-        var description = Cards.findOne({id: card_id}).description;
-        if (description.length > maxLength)
-            return description.substr(0, maxLength - 3) + "...";
-        else
-            return description;
-    },
     checklists: function(card_id) {
         return Checklists.find({card: card_id});
-    },
-    checklistTotalTicked: function (card_id) {
-        return Checklists.find({card: card_id, checked: true}).count();
-    },
-    checklistPercentComplete: function (card_id) {
-        complete = parseInt(Checklists.find({card: card_id, checked: true}).count());
-        total = parseInt(Checklists.find({card: card_id}).count());
-        return complete / total * 100;
     },
     checklistTotal: function(card_id) {
         return Checklists.find({card: card_id}).count();
@@ -37,13 +21,13 @@ Template.card_content.helpers({
     }
 });
 
-Template.card_content.events = {
+Template.card_content_extended.events = {
     "click .edit_card_link": function () {
         _id = this._id;
         Session.set("edit",_id);
     },
     "click .expand_card_link": function () {
         _id = this._id;
-        Session.set(_id, true);
+        Session.set(_id, false);
     }
 }

@@ -4,7 +4,11 @@
             {{#if edit _id}}
                 {{> card_edit }}
             {{ else }}
-                {{> card_content }}
+                {{#if extended _id }}
+                    {{> card_content_extended }}
+                {{ else }}
+                    {{> card_content }}
+                {{/if}}
             {{/if}}
         {{/with}}
     </li>

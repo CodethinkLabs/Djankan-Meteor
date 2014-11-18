@@ -8,7 +8,6 @@
     border-radius: 8px;
     box-shadow: 1px 2px 1px #ccc;
     list-style: none;
-    padding-bottom: 1px;
 }
 
 .card_header {
@@ -21,8 +20,21 @@
     border-bottom-width:1px;
     border-bottom-color:#dea87e;
     border-bottom-style: solid;
-
 }
+
+.card_footer {
+    background-color: #F9BC8D;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    border-top-width:1px;
+    border-top-color:#dea87e;
+    border-top-style: solid;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
 .card_header_edit {
     height: 24px;
     position: relative;
@@ -155,6 +167,12 @@
 
 .discard_card_edit {
     float: left;
+}
+
+.expand_card_link {
+    display: block;
+    text-decoration: none;
+    color: #884E22;
 }
 
 .spacer {
