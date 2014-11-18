@@ -15,13 +15,21 @@ Template.menu_bar.helpers({
             return Boards.findOne({id:boardId}).title;
         else
             return "Kanban";
+    },
+    onBoard: function() {
+        if(Session.get('boardId'))
+            return true;
+        return false;
     }
 });
 
 Template.menu_bar.events({
-    'click input.add': function() {
+    'click input.refreshBoard': function() {
         var boardId = Session.get('boardId');
         Meteor.call('GETBoard',boardId);
+    },
+    'click input.refreshAllBoards': function() {
+        Meteor.call('refreshAllBoards');
     },
     'click .new_lane_link': function() {
         blankLane = {

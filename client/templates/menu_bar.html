@@ -17,7 +17,11 @@
             <a class="milestones" href="#">milestones</a>
         </span>
         <span class="reset_button">
-            <input type="button" class="add" value="Refresh Board" />
+            {{#if onBoard}}
+               <input type="button" class="refreshBoard" value="Refresh Board" />
+            {{ else }}
+               <input type="button" class="refreshAllBoards" value="Refresh Boards" />
+            {{/if }}
         </span>
         <span class="logo">
             <img src="/images/logo.gif" alt="Codethink" height="28" width="130">
