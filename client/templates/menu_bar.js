@@ -32,8 +32,10 @@ Template.menu_bar.events({
         Meteor.call('refreshAllBoards');
     },
     'click .new_lane_link': function() {
+        boardId = Session.get("boardId");
+        console.log(boardId);
         blankLane = {
-            "board": 1,
+            "board": boardId,
             "title": "LANE",
             "cardLimit": 0,
             "colour": "blue",
@@ -43,8 +45,8 @@ Template.menu_bar.events({
             "inKanbanView": true,
             "deletedDate": "2014-11-10T13:35:59.345Z"
         };
-        Meteor.call('postlane',blankLane);
-        Meteor.call('updateLanes');
+        Meteor.call('postlane',boardId,blankLane);
+        Meteor.call('updateLanes',boardId);
     },
     'click .buckets': function() {
         Session.set('menu_edit',0);

@@ -10,6 +10,11 @@ Template.lane.helpers({
     laneposition: function(mongo_id) {
         position = Lanes.findOne({_id:mongo_id}).position;
         return position;
+    },
+    edit: function(_id) {
+        if(Session.get("edit")==_id)
+            return true;
+        return false;
     }
 });
 Template.lane.events = {
@@ -39,5 +44,16 @@ Template.lane.events = {
         boardId = Session.get('boardId');
         Meteor.call('postcard',blankCard,boardId);
         Meteor.call('updateCards',boardId);
+    },
+    "click .edit_lane": function() {
+        Session.set("edit",this._id);
+    },
+    "click .save_lane_edit": function() {
+        var boardId = Session.get('boardId');
+        _id=this._id
+        title = $('#'+_id).find('textarea[name="title"]').val();
+        Meteor.call("putlane",_id,title);
+        Session.set("edit",0);
+        Meteor.call("updateLanes",boardId);
     }
 }

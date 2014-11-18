@@ -6,6 +6,7 @@
         <span class="board_menu">
             {{> board_picker }}
         </span>
+        {{#if onBoard}}
         <span class="filter_menu">
             {{> bucket_filter }}
             {{> milestone_filter }}
@@ -16,13 +17,17 @@
         <span>
             <a class="milestones" href="#">milestones</a>
         </span>
-        <span class="reset_button">
-            {{#if onBoard}}
-               <input type="button" class="refreshBoard" value="Refresh Board" />
-            {{ else }}
-               <input type="button" class="refreshAllBoards" value="Refresh Boards" />
-            {{/if }}
+        <span>
+            <a class="new_lane_link" href="#">new lane</a>
         </span>
+        <span class="reset_button">
+               <input type="button" class="refreshBoard" value="Refresh Board" />
+        </span>
+        {{ else }}
+        <span class="reset_button">
+            <input type="button" class="refreshAllBoards" value="Refresh Boards" />
+        </span>
+        {{/if }}
         <span class="logo">
             <img src="/images/logo.gif" alt="Codethink" height="28" width="130">
         </span>

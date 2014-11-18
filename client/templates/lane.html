@@ -1,8 +1,22 @@
 <template name="lane">
     <div class="lane sortable" id='{{ _id }}'>
         <div class="lane_header">
-            <b>{{ lanetitle _id  }}</b>
-            <a class="add_card_link" href="#">+</a>
+            {{#if edit _id}}
+                <span>
+                    <textarea name="title" rows=1 cols="16">{{title}}</textarea>
+                </span>
+                <span>
+                    <button class="save_lane_edit">Save</button>
+                </span>
+            {{ else }}
+                <span>
+                    <b>{{ lanetitle _id  }}</b>
+                </span>
+                <span class="lane_header_icons">
+                    <a class="add_card_link" href="#">+</a>
+                    <a class="edit_lane" href="#">&#x270E;</a>
+                </span>
+            {{/if }}
         </div>
         <ul id="{{ _id }}" class="list-area connectedSortable">
         {{#each cards _id  }}

@@ -22,6 +22,14 @@
     border-bottom-style: solid;
 }
 
+.edit_lane {
+    text-decoration: none;
+    color: #1A766F;
+    font-size: 32px;
+    float: right;
+    line-height: 18px;
+}
+
 .add_card_link {
     text-decoration: none;
     color: #1A766F;
