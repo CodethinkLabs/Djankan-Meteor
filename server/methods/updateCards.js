@@ -24,6 +24,10 @@ Meteor.methods({
                     Cards.update(localCard,gotCard);
                 else if(gotCard.lane!=localCard.lane)
                     Cards.update(localCard,gotCard);
+                else if(gotCard.bucket!=localCard.bucket)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.milestone!=localCard.milestone)
+                    Cards.update(localCard,gotCard);
             }
         }
         catch (e) {

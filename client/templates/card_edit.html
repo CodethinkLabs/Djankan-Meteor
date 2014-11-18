@@ -6,6 +6,29 @@
         <textarea name="descr" cols=30 rows=5>{{description}}</textarea>
         <br>
         <input type="checkbox" id="{{_id}}archive">Archive<br>
+        <div class="bucket_picker_div">
+            <span>Bucket:</span>
+            <span>
+            <select class="bucket_picker">
+                <option value=0>No Bucket</option>
+                {{#each buckets}}
+                    <option value="{{ id }}" {{selectMyBucket ../id id}}>{{ title }}</option>
+                {{/each }}
+            </select>
+            </span>
+        </div>
+        <div class="milestone_picker_div">
+            <span>Milestone:</span>
+            <span>
+            <select class="milestone_picker">
+                <option value=0>No Milestone</option>
+                {{#each milestones}}
+                    <option value="{{ id }}" {{selectMyMilestone ../id id}}>{{ title }}</option>
+                {{/each }}
+            </select>
+            </span>
+        </div>
+
         Checklist:
         <div class="spacer"></div>
             {{#each assignees id }}
