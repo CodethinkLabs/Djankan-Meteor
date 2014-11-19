@@ -58,11 +58,18 @@ Template.card_edit.events = {
 }
 
 Template.card_edit.helpers({
-    users: function () {
-        return Users.find({})
+    users: function (cardId) {
+        var users = Users.find({});
+        var toReturn = new Array;
+        // take only users not already assigned to card
+        users.forEach(function(user) {
+            if(!Assignees.findOne({person:user.id,card:cardId}))
+                toReturn.push(user);
+        });
+        return toReturn;
     },
-    assignees: function(card_id) {
-        return Assignees.find({card: card_id})
+    assignees: function(cardId) {
+        return Assignees.find({card:cardId});
     },
     assigneeName: function(assignee_id) {
         assignee = Assignees.findOne({id: assignee_id}).person;

@@ -45,7 +45,7 @@
                 </div>
             {{/each }}
         <select id="assignee_picker">
-            {{#each users}}
+            {{#each users id}}
                 <option value="{{ id }}">{{ username }}</option>
             {{/each }}
         </select><button class="add_assignee">add</button>
