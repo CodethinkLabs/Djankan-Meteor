@@ -4,5 +4,6 @@ Template.board.helpers({
         
         lanes = Lanes.find({})
         return 308 * lanes.count();
-    }
+    },
+    boardHeight: $(window).height() - 41
 });
