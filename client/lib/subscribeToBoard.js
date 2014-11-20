@@ -8,17 +8,16 @@ subscribeToBoard = function(boardId) {
     Meteor.call('GETBoard',boardId);
     if(laneSub)
         laneSub.stop();
-    var board = Boards.findOne({id:boardId});
     laneSub = Meteor.subscribe('lanes', boardId, function() {
+        if(Lanes.find({}).count()==0)
+            postDefaultLanes(boardId);
     });
     if(bucketSub)
         bucketSub.stop();
-    bucketSub = Meteor.subscribe('buckets', boardId, function() {
-    });
+    bucketSub = Meteor.subscribe('buckets', boardId);
     if(milestoneSub)
         milestoneSub.stop();
-    milestoneSub = Meteor.subscribe('milestones', boardId, function() {
-    });
+    milestoneSub = Meteor.subscribe('milestones', boardId);
     if(checklistSub)
         checklistSub.stop();
     checklistSub = Meteor.subscribe('checklistByBoard', boardId, function() {
