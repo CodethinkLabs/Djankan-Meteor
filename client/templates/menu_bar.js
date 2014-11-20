@@ -55,5 +55,9 @@ Template.menu_bar.events({
     'click .milestones': function() {
         Session.set('menu_edit',0);
         Session.set('menu','milestone');
+    },
+    'click .newBoard': function() {
+        Session.set('menu_edit',1);
+        Session.set('menu','board');
     }
 });

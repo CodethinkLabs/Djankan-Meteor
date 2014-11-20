@@ -3,7 +3,11 @@
         {{#if isBucket }}
             {{> menu_content kind="bucket" }}
         {{ else }}
-            {{> menu_content kind="milestone" }}
+            {{#if isBoard  }}
+                {{> menu_content kind="board" }}
+            {{ else }}
+                {{> menu_content kind="milestone" }}
+            {{/if }}
         {{/if }}
     {{/if }}
 </template>

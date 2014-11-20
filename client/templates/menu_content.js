@@ -35,6 +35,16 @@ Template.menu_content.helpers({
         _id = Session.get("menu_edit");
         if(kind == "bucket") 
             return Buckets.findOne({_id:_id});
+        else if(kind == "board") {
+            blankBoard = {
+                "title": "Title", 
+                "createDate": "2014-11-14T16:46:11.543Z", 
+                "archived": false, 
+                "description": "description"
+            };
+            Session.set("tempBoard",blankBoard);
+            return blankBoard;
+        }
         return Milestones.findOne({_id:_id});
     },
     isMilestone: function(kind) {
@@ -56,17 +66,25 @@ Template.menu_content.events({
     },
     "click .save": function() {
         kind=Session.get("menu");
-        boardId=Session.get("boardId");
         title = $('.editor').find('textarea[name="title"]').val();
         descr = $('.editor').find('textarea[name="descr"]').val();
         if(kind=="bucket") {
-            console.log(this._id)
-            console.log(this)
+            var boardId=Session.get("boardId");
             Meteor.call("putbucket",boardId,this._id,title,descr);
             Meteor.call("updateBuckets",boardId);
             Session.set("menu_edit",0);
         }
+        else if(kind=="board") {
+            var board = Session.get("tempBoard");
+            board.title = title;
+            board.description = descr;
+            Meteor.call("postboard",board);
+            delete Session.keys["tempBoard"];
+            Meteor.call('refreshAllBoards');
+            Session.set("menu",0);
+        }
         else {
+            var boardId = Session.get("boardId");
             Meteor.call("putmilestone",boardId,this._id,title,descr);
             Meteor.call("updateMilestones",boardId);
             Session.set("menu_edit",0);

@@ -8,6 +8,11 @@ Template.menu_wrapper.helpers({
         if( Session.get("menu")== "bucket")
             return true;
         return false;
+    },
+    isBoard: function() {
+        if( Session.get("menu")== "board")
+            return true;
+        return false;
     }
 });
 
