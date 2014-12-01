@@ -22,9 +22,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="milestone_filter">
-Milestone:
 <select id="milestone_picker">
-        <option value="0">No Milestone</option>
+        <option value="0">No Milestone Filter</option>
         {{#each milestones}}
             <option value="{{ id }}" {{selectCurrent id}}>{{ title }}</option>
         {{/each }}

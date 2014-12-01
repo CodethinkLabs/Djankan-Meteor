@@ -31,14 +31,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </span>
         {{#if onBoard}}
         <span class="filter_menu">
-            {{> bucket_filter }}
-            {{> milestone_filter }}
-        </span>
-        <span>
             <a class="buckets" href="#">buckets</a>
-        </span>
-        <span>
+            {{> bucket_filter }}
             <a class="milestones" href="#">milestones</a>
+            {{> milestone_filter }}
         </span>
         <span>
             <a class="new_lane_link" href="#">new lane</a>
