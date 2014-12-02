@@ -59,7 +59,7 @@ Meteor.methods({
             getToCollection(assignees_url,Assignees);
             checkListItems = Checklists.find({})
             checkListItems.forEach( function(checkListItem) {
-                var ticked = Meteor.call('getEventTicked', checkListItem.id);
+                var ticked = getEventTicked(checkListItem.id);
                 Checklists.update(checkListItem, {'$set' : {'checked' : ticked }})
             });
         });
