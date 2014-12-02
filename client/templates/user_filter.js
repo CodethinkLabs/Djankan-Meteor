@@ -21,18 +21,21 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-var cardSub;
-var assigneesSub;
+Template.user_filter.helpers({
+    users: Users.find({}),
+    selectCurrent: function(id) {
+        if(Session.get("userId")==id)
+            return 'selected';
+    } 
+});
 
-updateCardSub = function() {
-    if(cardSub)
-        cardSub.stop();
-    if(assigneesSub)
-        assigneesSub.stop();
-    var boardId = Session.get('boardId');
-    var userId = Session.get('userId');
-    var bucketId = Session.get('bucketId');
-    var milestoneId = Session.get('milestoneId');
-    cardSub = Meteor.subscribe('cards', boardId,userId,bucketId,milestoneId);
-    assigneesSub = Meteor.subscribe('assigneesByBoard', boardId);
-}
+Template.user_filter.events({
+    'change select': function(evt) {
+        var ID = parseInt($(evt.target).val())
+        if (ID > 0)
+            Session.set('userId', ID);
+        else
+            Session.set('userId', 0);
+        updateCardSub();
+    }
+});

@@ -1,4 +1,4 @@
-/*The MIT License (MIT)
+<!--The MIT License (MIT)
 
 Copyright (c) 2013 Andy Dai
 Copyright (c) 2014 Codethink Ltd.
@@ -19,20 +19,13 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+-->
 
-var cardSub;
-var assigneesSub;
-
-updateCardSub = function() {
-    if(cardSub)
-        cardSub.stop();
-    if(assigneesSub)
-        assigneesSub.stop();
-    var boardId = Session.get('boardId');
-    var userId = Session.get('userId');
-    var bucketId = Session.get('bucketId');
-    var milestoneId = Session.get('milestoneId');
-    cardSub = Meteor.subscribe('cards', boardId,userId,bucketId,milestoneId);
-    assigneesSub = Meteor.subscribe('assigneesByBoard', boardId);
-}
+<template name="user_filter">
+<select id="bucket_picker">
+        <option value="0">No User Filter</option>
+        {{#each users}}
+            <option value="{{ id }}" {{selectCurrent id}}>{{ username }}</option>
+        {{/each }}
+</select>
+</template>

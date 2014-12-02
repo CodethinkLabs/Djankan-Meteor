@@ -76,6 +76,7 @@ function initialSortable() {
 // set the board/milestones menu to be off by default
 Session.set('menu',0);
 Session.set('boardId',0);
+Session.set('userId',0);
 Session.set('bucketId',0);
 Session.set('milestoneId',0);
 

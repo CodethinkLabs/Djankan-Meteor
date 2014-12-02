@@ -30,12 +30,40 @@ Meteor.publish('cardsByBucket', function(bucket_id) {
 Meteor.publish('cardsByMilestone', function(milestone_id) {
   return Cards.find({milestone: milestone_id});
 });
-Meteor.publish('cards', function(board_id,bucket_id,milestone_id) {
-    if(bucket_id==0 && milestone_id==0)
+Meteor.publish('cards', function(board_id,user_id,bucket_id,milestone_id) {
+    if(user_id==0 && bucket_id==0 && milestone_id==0)
         return Cards.find({board:board_id});
-    if(bucket_id==0)
-        return Cards.find({milestone:milestone_id});
-    if(milestone_id==0)
-        return Cards.find({bucket:bucket_id});
-    return Cards.find({bucket:bucket_id,milestone:milestone_id});
+    else if(user_id==0) {
+        if(bucket_id==0)
+            return Cards.find({milestone:milestone_id});
+        else if(milestone_id==0)
+            return Cards.find({bucket:bucket_id});
+    }
+    var assignees = Assignees.find({person:user_id}).fetch();
+    var cardsOfAssignee = new Array(assignees.length);
+    for(var i=0;i<assignees.length;i++) {
+        cardsOfAssignee[i] = assignees[i].card;
+    }
+    if(bucket_id==0 && milestone_id==0) {
+        return Cards.find({
+            id: { $in: cardsOfAssignee }
+        });
+    }
+    else if(bucket_id==0) {
+        return Cards.find({
+            id: { $in: cardsOfAssignee },
+            milestone:milestone_id
+        });
+    }
+    else if(milestone_id==0) {
+        return Cards.find({
+            id: { $in: cardsOfAssignee },
+            bucket:bucket_id
+        });
+    }
+    return Cards.find({
+        id: { $in: cardsOfAssignee },
+        bucket:bucket_id,
+        milestone:milestone_id
+    });
 });
