@@ -64,8 +64,30 @@ Meteor.methods({
             });
         });
         // set board to active and update nextCardNumber
-        Boards.update(board,{ 
+        Boards.update(board,{
             '$set': {'active':true,'nextCardNumber':nextCardNumber}
+        });
+    },
+
+    postboard: function(board) {
+        url = HOST+API+'boards/';
+        try {
+            r = HTTP.call("POST",url,{data: board});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
+
+    refreshAllBoards: function(boardId) {
+        Boards.remove({});
+        board_url = HOST+API+'boards/';
+        getToCollection(board_url,Boards);
+        //add active=false
+        boards = Boards.find({});
+        boards.forEach( function(board) {
+            Boards.update(board, {'$set' : {'active' : false }});
+            Boards.update(board, {'$set' : {'nextCardNumber' : 0 }});
         });
     }
 });

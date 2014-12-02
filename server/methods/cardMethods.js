@@ -21,9 +21,22 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// method to put a card when the title description or archive status
-// is edited on the GUI
+//method to post a new card created on the GUI
 Meteor.methods({
+    postcard: function(card,boardId) {
+        var board = Boards.findOne({id:boardId})
+        var url = HOST+API+'boards/'+boardId+'/cards/';
+        var nextCardNumber = ++board.nextCardNumber;
+        Boards.update({id:boardId},{ '$set': {'nextCardNumber':nextCardNumber}});
+        card.header.cardNumber=nextCardNumber;
+        try {
+            var r = HTTP.call("POST",url,{data: card});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
+
     putcard: function(card_id,title,description,archive,bucket,milestone) {
         card = Cards.findOne({_id:card_id});
         ID = card.id;
@@ -50,6 +63,40 @@ Meteor.methods({
         catch (e) {
             console.log(card);
             console.log(e);
+        }
+    },
+
+    updateCards: function(boardId) {
+        url=HOST+API+'boards/'+boardId+'/cards/';
+        try {
+            var r = HTTP.call("GET", url);
+            var respJson = JSON.parse(r.content)
+            for(var i=0;i<respJson.length;i++) {
+                gotCard=respJson[i]
+                localCard=Cards.findOne({id:gotCard.id})
+                // if no correspoding in collection insert it
+                if(!localCard) {
+                    if(!gotCard.archived)
+                        Cards.insert(gotCard);
+                }
+                // else check to see if been archived
+                else if(gotCard.archived)
+                    Cards.remove(localCard)
+                // else check to see if title or description or lane changed
+                else if(gotCard.description!=localCard.description)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.title!=localCard.title)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.lane!=localCard.lane)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.bucket!=localCard.bucket)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.milestone!=localCard.milestone)
+                    Cards.update(localCard,gotCard);
+            }
+        }
+        catch (e) {
+            console.log("Response issue: url: "+url);
         }
     }
 });

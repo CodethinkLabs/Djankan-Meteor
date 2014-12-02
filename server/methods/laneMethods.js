@@ -21,8 +21,63 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// update lanes when they are rearranged
 Meteor.methods({
+    changeLane: function(card_id,lane) {
+        card = Cards.findOne({_id:card_id});
+        card.lane=lane;
+        ID = card.id;
+        delete card['_id'];
+        url = HOST+API+'card/'+ID+'/';
+        try {
+            r = HTTP.call("PUT",url,{data: card});
+        }
+        catch (e) {
+            console.log(card);
+            console.log(e);
+        }
+    },
+
+    postlane: function(boardId,lane) {
+        console.log(boardId);
+        url = HOST+API+'boards/'+boardId+'/lanes/';
+        try {
+            r = HTTP.call("POST",url,{data: lane});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
+
+    putlane: function(lane_id,title) {
+        lane = Lanes.findOne({_id:lane_id});
+        ID = lane.id;
+        lane.title=title;
+        delete lane['_id'];
+        url = HOST+API+'boards/'+BOARD_ID+'/lanes/'+ID+'/';
+        try {
+            r = HTTP.call("PUT",url,{data: lane});
+        }
+        catch (e) {
+            console.log(lane);
+            console.log(e);
+        }
+    },
+
+    putlanes: function(boardId) {
+        lanes=Lanes.find({board:boardId});
+        lanes.forEach(function (lane) {
+            ID = lane.id;
+            url = HOST+API+'boards/'+boardId+'/lanes/'+ID+'/';
+            try {
+                r = HTTP.call("PUT",url,{data: lane});
+            }
+            catch (e) {
+                console.log(card);
+                console.log(e);
+            }
+        });
+    },
+
     updateLanes: function(boardId) {
         url=HOST+API+'boards/'+boardId+'/lanes/';
         try {

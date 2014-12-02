@@ -21,16 +21,46 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// update lanes when they are rearranged
 Meteor.methods({
-    updateMilestones: function(boardId) {
-        url=HOST+API+'boards/'+boardId+'/milestones/';
+    deleteAssignee: function(assignee_id) {
+        url = HOST+API+'assignee/'+ assignee_id +'/';
+        try {
+            r = HTTP.call("DELETE",url);
+            Assignees.remove({id: assignee_id});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
+
+    postAssignee: function(card_mongo_id, user_id) {
+        card = Cards.findOne({_id:card_mongo_id});
+        user = Users.findOne({id: parseInt(user_id)});
+        url = HOST+API+'card/'+ card.id +'/assignees/';
+        assignee = {
+            "card": card.id,
+            "person": user.id,
+            "assignee_role": "NORM"
+        };
+        try {
+            r = HTTP.call("POST",url,{data: assignee});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
+
+    updateAssignees: function(card_id) {
+        url = HOST+API+'card/'+ card_id +'/assignees/';
         try {
             var r = HTTP.call("GET", url);
-            var respJson = JSON.parse(r.content)
-            Milestones.remove({})
+            var respJson = JSON.parse(r.content);
             for(var i=0;i<respJson.length;i++) {
-                Milestones.insert(respJson[i]);
+                gotAssignee=respJson[i];
+                localAssignee=Assignees.findOne({id: gotAssignee.id});
+                if (!localAssignee) {
+                    Assignees.insert(gotAssignee);
+                }
             }
         }
         catch (e) {

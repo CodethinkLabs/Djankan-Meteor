@@ -31,10 +31,7 @@ subscribeToBoard = function(boardId) {
     Meteor.call('GETBoard',boardId);
     if(laneSub)
         laneSub.stop();
-    laneSub = Meteor.subscribe('lanes', boardId, function() {
-        if(Lanes.find({}).count()==0)
-            postDefaultLanes(boardId);
-    });
+    laneSub = Meteor.subscribe('lanes', boardId);
     if(bucketSub)
         bucketSub.stop();
     bucketSub = Meteor.subscribe('buckets', boardId);

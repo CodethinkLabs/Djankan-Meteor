@@ -21,15 +21,44 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-//method to post a new milestone created on the GUI
+//method to post a new bucket created on the GUI
 Meteor.methods({
-    postmilestone: function(milestone,boardId) {
-        url = HOST+API+'boards/'+boardId+'/milestones/';
+    postbucket: function(bucket,boardId) {
+        url = HOST+API+'boards/'+boardId+'/buckets/';
         try {
-            r = HTTP.call("POST",url,{data: milestone});
+            r = HTTP.call("POST",url,{data: bucket});
         }
         catch (e) {
             console.log(e);
+        }
+    },
+    putbucket: function(boardId,bucket_id,title,description) {
+        var bucket = Buckets.findOne({_id:bucket_id});
+        var ID = bucket.id;
+        bucket.title=title;
+        bucket.description=description;
+        delete bucket['_id'];
+        var url = HOST+API+'boards/'+boardId+'/buckets/'+ID+'/';
+        try {
+            r = HTTP.call("PUT",url,{data: bucket});
+        }
+        catch (e) {
+            console.log(bucket);
+            console.log(e);
+        }
+    },
+    updateBuckets: function(boardId) {
+        url=HOST+API+'boards/'+boardId+'/buckets/';
+        try {
+            var r = HTTP.call("GET", url);
+            var respJson = JSON.parse(r.content)
+            Buckets.remove({})
+            for(var i=0;i<respJson.length;i++) {
+                Buckets.insert(respJson[i]);
+            }
+        }
+        catch (e) {
+            console.log("Response issue: url: "+url);
         }
     }
 });

@@ -21,18 +21,42 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+//method to post a new milestone created on the GUI
 Meteor.methods({
-    updateAssignees: function(card_id) {
-        url = HOST+API+'card/'+ card_id +'/assignees/';
+    postmilestone: function(milestone,boardId) {
+        url = HOST+API+'boards/'+boardId+'/milestones/';
+        try {
+            r = HTTP.call("POST",url,{data: milestone});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
+
+    putmilestone: function(boardId,milestone_id,title,description) {
+        var milestone = Milestones.findOne({_id:milestone_id});
+        var ID = milestone.id;
+        milestone.title=title;
+        milestone.description=description;
+        delete milestone['_id'];
+        var url = HOST+API+'boards/'+boardId+'/milestones/'+ID+'/';
+        try {
+            r = HTTP.call("PUT",url,{data: milestone});
+        }
+        catch (e) {
+            console.log(milestone);
+            console.log(e);
+        }
+    },
+
+    updateMilestones: function(boardId) {
+        url=HOST+API+'boards/'+boardId+'/milestones/';
         try {
             var r = HTTP.call("GET", url);
-            var respJson = JSON.parse(r.content);
+            var respJson = JSON.parse(r.content)
+            Milestones.remove({})
             for(var i=0;i<respJson.length;i++) {
-                gotAssignee=respJson[i];
-                localAssignee=Assignees.findOne({id: gotAssignee.id});
-                if (!localAssignee) {
-                    Assignees.insert(gotAssignee);
-                }
+                Milestones.insert(respJson[i]);
             }
         }
         catch (e) {
