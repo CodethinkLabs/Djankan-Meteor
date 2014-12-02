@@ -86,7 +86,7 @@ Meteor.methods({
             respJson.sort(function(obj1, obj2) {
                 return obj1.position - obj2.position;
             });
-            Lanes.remove({})
+            Lanes.remove({board:boardId})
             for(var i=0;i<respJson.length;i++) {
                 Lanes.insert(respJson[i]);
             }
