@@ -56,6 +56,7 @@ Template.menu_bar.events({
     },
     'click .new_lane_link': function() {
         boardId = Session.get("boardId");
+        inTriage = Session.get("triageView");
         console.log(boardId);
         blankLane = {
             "board": boardId,
@@ -64,8 +65,8 @@ Template.menu_bar.events({
             "colour": "blue",
             "lane_role": "NORM",
             "position": 0,
-            "inTriageView": false,
-            "inKanbanView": true,
+            "inTriageView": inTriage,
+            "inKanbanView": !inTriage,
             "deletedDate": "2014-11-10T13:35:59.345Z"
         };
         Meteor.call('postlane',boardId,blankLane);
