@@ -54,7 +54,7 @@ Meteor.methods({
         try {
             var r = HTTP.call("GET", url);
             var respJson = JSON.parse(r.content)
-            Milestones.remove({})
+            Milestones.remove({board:boardId});
             for(var i=0;i<respJson.length;i++) {
                 Milestones.insert(respJson[i]);
             }

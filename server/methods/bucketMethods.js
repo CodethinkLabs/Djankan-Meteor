@@ -52,7 +52,7 @@ Meteor.methods({
         try {
             var r = HTTP.call("GET", url);
             var respJson = JSON.parse(r.content)
-            Buckets.remove({})
+            Buckets.remove({board:boardId});
             for(var i=0;i<respJson.length;i++) {
                 Buckets.insert(respJson[i]);
             }
