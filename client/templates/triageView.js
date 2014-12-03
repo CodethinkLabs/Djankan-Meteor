@@ -21,24 +21,19 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-var laneSub;
-var bucketSub;
-var milestoneSub;
-var checklistSub;
+Template.triageView.helpers({
+    triage: function() {
+        return Session.get('triageView');
+    }
+});
 
-// remove old subscriptions and subscribe to a new board
-subscribeToBoard = function(boardId) {
-    Meteor.call('GETBoard',boardId);
-    if(bucketSub)
-        bucketSub.stop();
-    bucketSub = Meteor.subscribe('buckets', boardId);
-    if(milestoneSub)
-        milestoneSub.stop();
-    milestoneSub = Meteor.subscribe('milestones', boardId);
-    if(checklistSub)
-        checklistSub.stop();
-    checklistSub = Meteor.subscribe('checklistByBoard', boardId, function() {
-    });
-    updateLaneSub();
-    updateCardSub();
-}
+Template.menu_bar.events({
+    'click .triageViewLink': function() {
+        Session.set('triageView',true);
+        updateLaneSub();
+    },
+    'click .kanbanViewLink': function() {
+        Session.set('triageView',false);
+        updateLaneSub();
+    }
+});

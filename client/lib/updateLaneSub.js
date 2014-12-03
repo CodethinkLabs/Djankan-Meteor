@@ -22,23 +22,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 var laneSub;
-var bucketSub;
-var milestoneSub;
-var checklistSub;
 
-// remove old subscriptions and subscribe to a new board
-subscribeToBoard = function(boardId) {
-    Meteor.call('GETBoard',boardId);
-    if(bucketSub)
-        bucketSub.stop();
-    bucketSub = Meteor.subscribe('buckets', boardId);
-    if(milestoneSub)
-        milestoneSub.stop();
-    milestoneSub = Meteor.subscribe('milestones', boardId);
-    if(checklistSub)
-        checklistSub.stop();
-    checklistSub = Meteor.subscribe('checklistByBoard', boardId, function() {
-    });
-    updateLaneSub();
-    updateCardSub();
+updateLaneSub = function() {
+    if(laneSub)
+        laneSub.stop();
+    var boardId = Session.get('boardId');
+    if(Session.get('triageView'))
+        laneSub = Meteor.subscribe('triageLanes', boardId);
+    else
+        laneSub = Meteor.subscribe('lanes', boardId);
 }

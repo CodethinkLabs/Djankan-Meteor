@@ -1,4 +1,4 @@
-/*The MIT License (MIT)
+<!--The MIT License (MIT)
 
 Copyright (c) 2013 Andy Dai
 Copyright (c) 2014 Codethink Ltd.
@@ -19,26 +19,12 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+-->
 
-var laneSub;
-var bucketSub;
-var milestoneSub;
-var checklistSub;
-
-// remove old subscriptions and subscribe to a new board
-subscribeToBoard = function(boardId) {
-    Meteor.call('GETBoard',boardId);
-    if(bucketSub)
-        bucketSub.stop();
-    bucketSub = Meteor.subscribe('buckets', boardId);
-    if(milestoneSub)
-        milestoneSub.stop();
-    milestoneSub = Meteor.subscribe('milestones', boardId);
-    if(checklistSub)
-        checklistSub.stop();
-    checklistSub = Meteor.subscribe('checklistByBoard', boardId, function() {
-    });
-    updateLaneSub();
-    updateCardSub();
-}
+<template name="triageView">
+    {{#if triage }}
+        <a href="#" class="kanbanViewLink">Kanban View</a>
+    {{ else }}
+        <a href="#" class="triageViewLink">Triage View</a>
+    {{/if }}
+</template>

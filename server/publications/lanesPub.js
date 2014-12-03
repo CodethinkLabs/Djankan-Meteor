@@ -22,5 +22,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 Meteor.publish('lanes', function(boardId) {
-  return Lanes.find({board:boardId});
+    return Lanes.find({
+        board:boardId,
+        inKanbanView:true
+    });
+});
+
+Meteor.publish('triageLanes', function(boardId) {
+    return Lanes.find({
+        board:boardId,
+        inTriageView:true
+    });
 });
