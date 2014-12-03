@@ -48,10 +48,12 @@ Meteor.methods({
         }
     },
 
-    putlane: function(lane_id,title) {
+    putlane: function(lane_id,title,inTriageView,inKanbanView) {
         lane = Lanes.findOne({_id:lane_id});
         ID = lane.id;
         lane.title=title;
+        lane.inTriageView=inTriageView;
+        lane.inKanbanView=inKanbanView;
         delete lane['_id'];
         url = HOST+API+'boards/'+BOARD_ID+'/lanes/'+ID+'/';
         try {

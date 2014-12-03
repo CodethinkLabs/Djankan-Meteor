@@ -38,11 +38,23 @@ Template.lane.helpers({
         if(Session.get("edit")==_id)
             return true;
         return false;
+    },
+    checkedInTriage: function(mongo_id) {
+        var lane = Lanes.findOne({_id:mongo_id});
+        if(lane.inTriageView)
+            return "checked";
+        return "";
+    },
+    checkedInKanban: function(mongo_id) {
+        var lane = Lanes.findOne({_id:mongo_id});
+        if(lane.inKanbanView)
+            return "checked";
+        return "";
     }
 });
 Template.lane.events = {
     "click .add_card_link": function() {
-        id = this.id
+        var id = this.id
         //put a new card header and blank card then get
         blankCard = {
             "header": {
@@ -73,9 +85,12 @@ Template.lane.events = {
     },
     "click .save_lane_edit": function() {
         var boardId = Session.get('boardId');
-        _id=this._id
-        title = $('#'+_id).find('textarea[name="title"]').val();
-        Meteor.call("putlane",_id,title);
+        var _id=this._id
+        var title = $('#'+_id).find('textarea[name="title"]').val();
+        var inTriageView = $('#inTriageCheck').prop('checked');
+        console.log($('#inTriageCheck'));
+        var inKanbanView = $('#inKanbanCheck').prop('checked');
+        Meteor.call("putlane",_id,title,inTriageView,inKanbanView);
         Session.set("edit",0);
         Meteor.call("updateLanes",boardId);
     }
