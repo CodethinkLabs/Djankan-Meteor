@@ -23,48 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <template name="lane">
     <div class="lane sortable" id='{{ _id }}'>
-        <div class="lane_header">
-            {{#if edit _id}}
-                <span>
-                    <textarea
-                        name="title" 
-                        rows=1 
-                        cols="16"
-                    >{{title}}</textarea><br>
-                </span>
-                <input
-                    type="checkbox"
-                    id="inKanbanCheck"
-                    {{checkedInKanban _id }}
-                >in kanban view<br><input
-                    type="checkbox"
-                    id="inTriageCheck"
-                    {{checkedInTriage _id }}
-                >in triage view<br><span>
-                    <button class="save_lane_edit">
-                        Save
-                    </button>
-                </span>
-            {{ else }}
-                <span>
-                    <b>{{ lanetitle _id  }}</b>
-                </span>
-                <span class="lane_header_icons">
-                    <a
-                        class="add_card_link" 
-                        href="#"
-                    >
-                    +
-                    </a>
-                    <a
-                        class="edit_lane"
-                        href="#"
-                    >
-                    &#x270E;
-                    </a>
-                </span>
-            {{/if }}
-        </div>
+        {{> lane_header }}
         <ul 
             id="{{ _id }}" 
             class="list-area connectedSortable"

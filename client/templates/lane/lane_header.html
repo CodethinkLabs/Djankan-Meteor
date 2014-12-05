@@ -1,4 +1,4 @@
-/*The MIT License (MIT)
+<!--The MIT License (MIT)
 
 Copyright (c) 2013 Andy Dai
 Copyright (c) 2014 Codethink Ltd.
@@ -19,15 +19,30 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+-->
 
-Template.lane.helpers({
-    cards: function(mongo_id) {
-        laneID = Lanes.findOne({_id: mongo_id}).id;
-        return Cards.find({lane: laneID})
-    },
-    laneposition: function(mongo_id) {
-        position = Lanes.findOne({_id:mongo_id}).position;
-        return position;
-    }
-});
+<template name="lane_header">
+    <div class="lane_header">
+        {{#if edit _id}}
+            {{> lane_edit }}
+        {{ else }}
+            <span>
+                <b>{{ lanetitle _id  }}</b>
+            </span>
+            <span class="lane_header_icons">
+                <a
+                    class="add_card_link" 
+                    href="#"
+                >
+                +
+                </a>
+                <a
+                    class="edit_lane"
+                    href="#"
+                >
+                &#x270E;
+                </a>
+            </span>
+        {{/if }}
+    </div>
+</template>
