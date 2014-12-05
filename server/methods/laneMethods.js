@@ -22,6 +22,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 Meteor.methods({
+    deleteLane: function(lane_id) {
+        url = HOST+API+'lane/'+ lane_id +'/';
+        try {
+            r = HTTP.call("DELETE",url);
+            Lanes.remove({id: lane_id});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
     changeLane: function(card_id,lane) {
         card = Cards.findOne({_id:card_id});
         card.lane=lane;

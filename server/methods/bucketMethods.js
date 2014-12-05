@@ -23,6 +23,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 //method to post a new bucket created on the GUI
 Meteor.methods({
+    deleteBucket: function(bucket_id) {
+        url = HOST+API+'bucket/'+ bucket_id +'/';
+        try {
+            r = HTTP.call("DELETE",url);
+            Buckets.remove({id: bucket_id});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
     postbucket: function(bucket,boardId) {
         url = HOST+API+'boards/'+boardId+'/buckets/';
         try {

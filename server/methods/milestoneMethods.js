@@ -23,6 +23,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 //method to post a new milestone created on the GUI
 Meteor.methods({
+    deleteMilestone: function(milestone_id) {
+        url = HOST+API+'milestone/'+ milestone_id +'/';
+        try {
+            r = HTTP.call("DELETE",url);
+            Milestones.remove({id: milestone_id});
+        }
+        catch (e) {
+            console.log(e);
+        }
+    },
     postmilestone: function(milestone,boardId) {
         url = HOST+API+'boards/'+boardId+'/milestones/';
         try {
