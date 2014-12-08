@@ -35,7 +35,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .lane_header {
     cursor: move;
     color: #1A766F;
-    font-size: 24px;
+    font-size: 16px;
     padding:  8px 8px 0px 8px;
     background-color: #BAE8E5;
     border-top-left-radius: 10px;
@@ -43,6 +43,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     border-bottom-width:1px;
     border-bottom-color:#a8d2cf;
     border-bottom-style: solid;
+    display:table;
+    table-layout:fixed;
+    width: 285px;
+}
+
+.lane h2 {
+    font-size: 24px;
+    display:table-cell;    
+}
+
+.lane_title_wrapper {
+    width: 50%;
 }
 
 .edit_lane {
@@ -51,6 +63,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     font-size: 32px;
     float: right;
     line-height: 18px;
+    display:table-cell;
 }
 
 .add_card_link {
@@ -59,6 +72,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     font-size: 32px;
     float: right;
     line-height: 18px;
+    display:table-cell;
 }
 
 .lane_li {

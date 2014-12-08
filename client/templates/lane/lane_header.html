@@ -26,23 +26,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         {{#if edit _id}}
             {{> lane_edit }}
         {{ else }}
-            <span>
-                <b>{{ lanetitle _id  }}</b>
-            </span>
-            <span class="lane_header_icons">
-                <a
-                    class="add_card_link" 
-                    href="#"
-                >
-                +
-                </a>
-                <a
-                    class="edit_lane"
-                    href="#"
-                >
-                &#x270E;
-                </a>
-            </span>
+            <h2>{{ lanetitle _id  }}</h2>
+            <a
+                class="add_card_link" 
+                href="#"
+            >
+            +
+            </a>
+            <a
+                class="edit_lane"
+                href="#"
+            >
+            &#x270E;<!-- unicode pensil -->
+            </a>
         {{/if }}
     </div>
 </template>
