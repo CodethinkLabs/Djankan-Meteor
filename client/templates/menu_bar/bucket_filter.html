@@ -22,10 +22,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="bucket_filter">
-<select id="bucket_picker">
-        <option value="0">No Bucket Filter</option>
-        {{#each buckets}}
-            <option value="{{ id }}" {{selectCurrent id}}>{{ title }}</option>
-        {{/each }}
-</select>
+    <select id="bucket_picker">
+            <option value="0">No Bucket Filter</option>
+            {{#each buckets}}
+                <option value="{{ id }}"
+                        {{selectCurrent id}}>
+                    {{ title }}
+                </option>
+            {{/each }}
+    </select>
 </template>

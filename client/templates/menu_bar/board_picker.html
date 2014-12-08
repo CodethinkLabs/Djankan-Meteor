@@ -22,11 +22,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="board_picker">
-Board:
-<select id="milestone_bucket_picker">
-    <option value="0">Choose a Board</option>
-    {{#each boards}}
-        <option value="{{ id }}" {{selectCurrent id}}>{{ title }}</option>
-    {{/each }}
-</select>
+    Board:
+    <select id="milestone_bucket_picker">
+        <option value="0">Choose a Board</option>
+        {{#each boards}}
+            <option value="{{ id }}"
+                    {{selectCurrent id}}>
+                {{ title }}
+            </option>
+        {{/each }}
+    </select>
 </template>

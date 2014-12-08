@@ -22,30 +22,38 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="card_content_extended">
+
     <div class="card_header"><b>{{ header.cardNumber }}: {{ title }}</b>
         <div class="edit_card">
             <a class="edit_card_link" href="#">&#x270E;</a>
         </div>
     </div>
+
     <div class="card_body">
         <div class="description">
             {{ description }}
         </div>
         <div class="spacer"></div>
         {{#if checklistTotal id }}
-            Checklist:<ul class="checklist">
-            {{#each checklists id }}
-                <li class="checklist_item">{{ checklistDescription id }}</li>
-            {{/each }}</ul>
+            Checklist:
+            <ul class="checklist">
+                {{#each checklists id }}
+                    <li class="checklist_item">
+                        {{ checklistDescription id }}
+                    </li>
+                {{/each }}
+            </ul>
             <div class="spacer"></div>
         {{/if}}
         {{#each assignees id }}
-            <div class="assignee_container" style="background-color:#E6FAF8">
+            <div class="assignee_container"
+                 style="background-color:#E6FAF8">
                 <div class="assignee_picture"></div>
                 <div class="assignee_item">{{ assigneeName id }}</div>
             </div>
         {{/each }}
     </div>
+
     <div class="card_footer">
         <a class="expand_card_link" href="#">&#x25B2;</a>
     </div>

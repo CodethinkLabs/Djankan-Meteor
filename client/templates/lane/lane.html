@@ -24,13 +24,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <template name="lane">
     <div class="lane sortable" id='{{ _id }}'>
         {{> lane_header }}
-        <ul 
-            id="{{ _id }}" 
-            class="list-area connectedSortable"
-        >
-        {{#each cards _id  }}
-            {{> card_wrapper }}
-        {{/each }}
+        <ul id="{{ _id }}"
+            class="list-area connectedSortable">
+            {{#each cards _id  }}
+                {{> card_wrapper }}
+            {{/each }}
         </ul>
     </div>
 </template>

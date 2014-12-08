@@ -23,38 +23,46 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <template name="menu_bar">
     <div class="menu_bar">
+
         <span class="board_title">
            <h1>{{ boardName }}</h1>
         </span>
+
         <span class="board_menu">
             {{> board_picker }}
         </span>
+
         {{#if onBoard}}
-        <span class="filter_menu">
-            users
-            {{>user_filter}}
-            <a class="buckets" href="#">buckets</a>
-            {{> bucket_filter }}
-            <a class="milestones" href="#">milestones</a>
-            {{> milestone_filter }}
-        </span>
-        <span>
-            <a class="new_lane_link" href="#">new lane</a>
-        </span>
-        {{> triageView}}
-        <span class="reset_button">
-               <input type="button" class="refreshBoard" value="Refresh Board" />
-        </span>
+            <span class="filter_menu">
+                users
+                {{>user_filter}}
+                <a class="buckets" href="#">buckets</a>
+                {{> bucket_filter }}
+                <a class="milestones" href="#">milestones</a>
+                {{> milestone_filter }}
+            </span>
+                <a class="new_lane_link" href="#">new lane</a>
+            {{> triageView}}
+            <span class="reset_button">
+                   <input type="button"
+                          class="refreshBoard"
+                          value="Refresh Board">
+            </span>
+
         {{ else }}
-        <span>
-            <a class="newBoard" href="#">newBoard</a>
-        </span>
-        <span class="reset_button">
-            <input type="button" class="refreshAllBoards" value="Refresh Boards" />
-        </span>
+                <a class="newBoard" href="#">newBoard</a>
+            <span class="reset_button">
+                <input type="button"
+                       class="refreshAllBoards"
+                       value="Refresh Boards">
+            </span>
         {{/if }}
+
         <span class="logo">
-            <img src="/images/logo.gif" alt="Codethink Ltd." height="28" width="130">
+            <img src="/images/logo.gif"
+                 alt="Codethink Ltd."
+                 height="28"
+                 width="130">
         </span>
     </div>
 </template>

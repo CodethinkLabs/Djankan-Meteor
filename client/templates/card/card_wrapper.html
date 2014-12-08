@@ -22,7 +22,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="card_wrapper">
-    <li id="{{ _id }}" class="card ui-state-default" data-status="{{ status }}">
+    <li id="{{ _id }}"
+        class="card ui-state-default"
+        data-status="{{ status }}">
         {{#with card _id}}
             {{#if edit _id}}
                 {{> card_edit }}

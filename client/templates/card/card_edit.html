@@ -22,58 +22,81 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="card_edit">
+
     <div class="card_header_edit">
-        <textarea name="title" rows=1>{{title}}</textarea>
+        <textarea name="title"
+                  rows=1
+            >{{title}}</textarea>
     </div>
+
     <div class="card_body">
-        <textarea name="descr" cols=30 rows=5>{{description}}</textarea>
+        <textarea name="descr"
+                  cols=30
+                  rows=5
+            >{{description}}</textarea>
         <br>
-        <input type="checkbox" id="{{_id}}archive">Archive<br>
+        <input id="{{_id}}archive"
+               type="checkbox">
+        Archive
+        <br>
+
         <div class="bucket_picker_div">
             <span>Bucket:</span>
             <span>
-            <select class="bucket_picker">
-                <option value=0>No Bucket</option>
-                {{#each buckets}}
-                    <option value="{{ id }}" {{selectMyBucket ../id id}}>{{ title }}</option>
-                {{/each }}
-            </select>
+                <select class="bucket_picker">
+                    <option value=0>No Bucket</option>
+                    {{#each buckets}}
+                        <option value="{{ id }}"
+                                {{selectMyBucket ../id id}}>
+                            {{ title }}
+                        </option>
+                    {{/each }}
+                </select>
             </span>
         </div>
+
         <div class="milestone_picker_div">
             <span>Milestone:</span>
             <span>
-            <select class="milestone_picker">
-                <option value=0>No Milestone</option>
-                {{#each milestones}}
-                    <option value="{{ id }}" {{selectMyMilestone ../id id}}>{{ title }}</option>
-                {{/each }}
-            </select>
+                <select class="milestone_picker">
+                    <option value=0>No Milestone</option>
+                    {{#each milestones}}
+                        <option value="{{ id }}"
+                                {{selectMyMilestone ../id id}}>
+                            {{ title }}
+                        </option>
+                    {{/each }}
+                </select>
             </span>
         </div>
 
         Checklist:
         <div class="spacer"></div>
-            {{#each assignees id }}
-                <div class="assignee_container_edit" style="background-color:{{ getAssigneeColor }}">
-                    <div class="assignee_picture"></div>
-                    <div class="assignee_item_edit">
-                        {{ assigneeName id }}
-                    </div>
-                    <div class="remove_assignee">
-                        <a id= "{{id}}" class="remove_assignee_link" href="#">
-                            &#x274c;
-                        </a>
-                    </div>
+        {{#each assignees id }}
+            <div class="assignee_container_edit"
+                 style="background-color:{{ getAssigneeColor }}">
+                <div class="assignee_picture"></div>
+                <div class="assignee_item_edit">
+                    {{ assigneeName id }}
                 </div>
-            {{/each }}
+                <div class="remove_assignee">
+                    <a id= "{{id}}"
+                       class="remove_assignee_link"
+                       href="#">
+                        &#x274c;
+                    </a>
+                </div>
+            </div>
+        {{/each }}
         <select id="assignee_picker">
             {{#each users id}}
                 <option value="{{ id }}">{{ username }}</option>
             {{/each }}
-        </select><button class="add_assignee">add</button>
+        </select>
+        <button class="add_assignee">add</button>
         <div class="spacer"></div>
         <button class="save_card_edit">Save</button>
-        <button class="discard_card_edit">Discard</button><br>
+        <button class="discard_card_edit">Discard</button>
+        <br>
     </div>
 </template>

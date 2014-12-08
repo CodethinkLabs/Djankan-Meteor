@@ -23,22 +23,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <template name="lane_edit">
     <span>
-        <textarea
-            name="title" 
-            rows=1 
-            cols="16"
-        >{{title}}</textarea><br>
+        <textarea name="title"
+                  rows=1
+                  cols="16"
+            >{{title}}</textarea>
+        <br>
     </span>
-    <input
-        type="checkbox"
-        id="inKanbanCheck"
-        {{checkedInKanban _id }}
-    >in kanban view<br>
-    <input
-        type="checkbox"
-        id="inTriageCheck"
-        {{checkedInTriage _id }}
-    >in triage view<br>
+
+    <input type="checkbox"
+           id="inKanbanCheck"
+           {{checkedInKanban _id }}>
+    in kanban view
+    <br>
+    <input type="checkbox"
+           id="inTriageCheck"
+           {{checkedInTriage _id }}>
+    in triage view
+    <br>
     <span>
         <button class="delete_lane">
             Delete

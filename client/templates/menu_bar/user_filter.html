@@ -22,10 +22,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="user_filter">
-<select id="bucket_picker">
-        <option value="0">No User Filter</option>
-        {{#each users}}
-            <option value="{{ id }}" {{selectCurrent id}}>{{ username }}</option>
-        {{/each }}
-</select>
+    <select id="bucket_picker">
+            <option value="0">No User Filter</option>
+            {{#each users}}
+                <option value="{{ id }}"
+                        {{selectCurrent id}}>
+                    {{ username }}
+                </option>
+            {{/each }}
+    </select>
 </template>
