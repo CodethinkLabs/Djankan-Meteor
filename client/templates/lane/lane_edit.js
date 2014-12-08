@@ -47,6 +47,7 @@ Template.lane_edit.events = {
         var boardId = Session.get('boardId');
         var _id=this._id
         var title = $('#'+_id).find('textarea[name="title"]').val();
+        title = title.trim();
         var inTriageView = $('#inTriageCheck').prop('checked');
         var inKanbanView = $('#inKanbanCheck').prop('checked');
         Meteor.call("putlane",_id,title,inTriageView,inKanbanView);

@@ -28,7 +28,9 @@ Template.card_edit.events = {
         var boardId = Session.get('boardId');
         var _id = this._id
         var title = $('#'+_id).find('textarea[name="title"]').val();
+        title = title.trim();
         var descr = $('#'+_id).find('textarea[name="descr"]').val();
+        descr = descr.trim();
         var archived = $('#'+_id+'archive').is(':checked');
         /* if bucket has been changed get pk else this is null and
         bucket remains the same. takes 0 for remove from bucket */

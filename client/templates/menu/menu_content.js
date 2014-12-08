@@ -90,7 +90,9 @@ Template.menu_content.events({
     "click .save": function() {
         kind=Session.get("menu");
         title = $('.editor').find('textarea[name="title"]').val();
+        title = title.trim();
         descr = $('.editor').find('textarea[name="descr"]').val();
+        descr = descr.trim();
         if(kind=="bucket") {
             var boardId=Session.get("boardId");
             Meteor.call("putbucket",boardId,this._id,title,descr);
