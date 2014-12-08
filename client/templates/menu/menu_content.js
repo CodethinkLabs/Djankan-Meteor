@@ -115,7 +115,20 @@ Template.menu_content.events({
             Session.set("menu_edit",0);
         } 
     },
-        
+    "click .delete": function() {
+        kind=Session.get("menu");
+        var boardId = Session.get('boardId');
+        var id=this.id
+        if(kind=="bucket") {
+            Meteor.call("deleteBucket",id);
+            Meteor.call("updateBuckets",boardId);
+        }
+        if(kind=="milestone") {
+            Meteor.call("deleteMilestone",id);
+            Meteor.call("updateMilestones",boardId);
+        }
+        Session.set("menu_edit",0);
+    },
     "click .new": function() {
         kind = this.kind;
         boardId=Session.get("boardId");

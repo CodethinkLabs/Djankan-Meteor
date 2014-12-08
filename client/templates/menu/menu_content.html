@@ -34,31 +34,52 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div class="menu_content">
         <div class="menu_header">
             <span>{{ kind }}s</span>
-            <span><a class="close" href="#">x</a></span>
+            <span>
+                <a 
+                    class="close" 
+                    href="#"
+                    >x</a>
+            </span>
         </div>
         <div class="menu_body">
-        {{#if edit }}
-            {{#with itemEdit kind }}
-            <div class="editor">
-                title:<textarea name="title" rows=1 cols=50>{{ title }}</textarea><br><br>
-                description:<textarea name="descr" cols=50>{{ description }}</textarea><br><br>
-            </div>
+            {{#if edit }}
+                {{#with itemEdit kind }}
+                    <div class="editor">
+                        title:<textarea 
+                                        name="title" 
+                                        rows=1 
+                                        cols=50
+                                        >{{ title }}</textarea>
+                                        <br>
+                                        <br>
+                        description:<textarea 
+                                        name="descr" 
+                                        cols=50
+                                        >{{ description }}</textarea>
+                                        <br>
+                                        <br>
+                    </div>
+                    <br>
+                    <span>
+                        <button class="save">Save</button>
+                        <button class="delete">Delete</button>
+                        <button class="discard">Discard</button>
+                    </span>
+                {{/with }}
+            {{ else }}
+                <a class="new" href="#">new {{ kind }}</a>
                 <br>
-                <span><button class="save">Save</button></span>
-                <span><button class="discard">Discard</button></span>
-            {{/with }}
-        {{ else }}
-            <a class="new" href="#">new {{ kind }}</a><br>
-            <ul>
-            {{#each items kind}}
-                <li>
-                    <span><b>{{ title }}</b></span>
-                    <span>{{ description }}</span>
-                    <span><a class="edit" href="#">edit</a></span>
-                </li>
-            {{/each }}
-            </ul>
-        {{/if }}
+
+                <ul>
+                {{#each items kind}}
+                    <li>
+                        <b>{{ title }}</b>
+                        {{ description }}
+                        <a class="edit" href="#">edit</a>
+                    </li>
+                {{/each }}
+                </ul>
+            {{/if }}
         </div>
     </div>
 </template>
