@@ -79,15 +79,26 @@ Meteor.methods({
         }
     },
 
-    refreshAllBoards: function(boardId) {
+    refreshAllBoards: function() {
         Boards.remove({});
-        board_url = HOST+API+'boards/';
+        var board_url = HOST+API+'boards/';
         getToCollection(board_url,Boards);
-        //add active=false
-        boards = Boards.find({});
+        var boards = Boards.find({});
         boards.forEach( function(board) {
             Boards.update(board, {'$set' : {'active' : false }});
             Boards.update(board, {'$set' : {'nextCardNumber' : 0 }});
+            board = Boards.findOne({_id:board._id});
+            var cards = Cards.find({board:board.id});
+            // find the nextCardNumber for any boards already loaded
+            if(cards.count())
+                Boards.update(board, {'$set' : {'active' : true }});
+            cards.forEach( function(card) {
+                var cardNumber = card.header.cardNumber;
+                if(cardNumber > board.nextCardNumber) {
+                    Boards.update(board, {'$set' : {'nextCardNumber' : cardNumber }});
+                    board = Boards.findOne({_id:board._id});
+                }
+            });
         });
     }
 });
