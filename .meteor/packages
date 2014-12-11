@@ -6,3 +6,6 @@
 meteor-platform
 insecure
 http
+jparker:crypto-md5
+jparker:gravatar
+

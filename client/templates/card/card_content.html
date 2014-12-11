@@ -49,7 +49,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         {{#each assignees id }}
             <div class="assignee_container"
                  style="background-color:#E6FAF8">
-                <div class="assignee_picture"></div>
+	        <div class="assignee_picture">
+	            <img src = {{ assigneeIconUrl id }} 
+		        alt="Gravatar" 
+		        height="18" width="18">
+	        </div>
                 <div class="assignee_item">{{ assigneeName id }}</div>
             </div>
         {{/each }}
