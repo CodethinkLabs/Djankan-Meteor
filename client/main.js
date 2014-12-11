@@ -79,7 +79,7 @@ Session.set('boardId',0);
 Session.set('userId',0);
 Session.set('bucketId',0);
 Session.set('milestoneId',0);
-Session.set('triageView',false);
+Session.set('view','kanban');
 
 Meteor.subscribe('boards', function() {
 });

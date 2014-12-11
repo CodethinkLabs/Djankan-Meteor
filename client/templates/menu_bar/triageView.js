@@ -23,17 +23,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Template.triageView.helpers({
     triage: function() {
-        return Session.get('triageView');
+        var view =  Session.get('view');
+        if(view == 'triage')
+            return true;
+        return false;
     }
 });
 
 Template.menu_bar.events({
     'click .triageViewLink': function() {
-        Session.set('triageView',true);
+        Session.set('view','triage');
         updateLaneSub();
     },
     'click .kanbanViewLink': function() {
-        Session.set('triageView',false);
+        Session.set('view','board');
         updateLaneSub();
     }
 });
