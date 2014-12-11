@@ -21,22 +21,28 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-Template.triageView.helpers({
+Template.triageViewLink.helpers({
     triage: function() {
         var view =  Session.get('view');
         if(view == 'triage')
             return true;
         return false;
+    },
+    laneView: function() {
+        var view = Session.get('view');
+        if(view == 'kanban' || view == 'triage')
+            return true;
+        return false;
     }
 });
 
-Template.menu_bar.events({
+Template.triageViewLink.events({
     'click .triageViewLink': function() {
         Session.set('view','triage');
         updateLaneSub();
     },
     'click .kanbanViewLink': function() {
-        Session.set('view','board');
+        Session.set('view','kanban');
         updateLaneSub();
     }
 });

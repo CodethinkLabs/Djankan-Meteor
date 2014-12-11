@@ -21,10 +21,10 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<template name="triageView">
-    {{#if triage }}
-        <a href="#" class="kanbanViewLink">Kanban View</a>
+<template name="archiveViewLink">
+    {{#if archiveView }}
+        <a href="#" class="laneViewLink">Lane View</a>
     {{ else }}
-        <a href="#" class="triageViewLink">Triage View</a>
+        <a href="#" class="archiveViewLink">Archive View</a>
     {{/if }}
 </template>

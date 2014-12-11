@@ -36,6 +36,10 @@ Template.bucket_filter.events({
             Session.set('bucketId', ID);
         else
             Session.set('bucketId', 0);
-        updateCardSub();
+        if(Session.get('view') == 'archive')
+            var getArchived = true;
+        else
+            var getArchived = false;
+        updateCardSub(getArchived);
     }
 });

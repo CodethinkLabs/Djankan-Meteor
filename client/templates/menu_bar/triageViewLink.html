@@ -1,4 +1,4 @@
-/*The MIT License (MIT)
+<!--The MIT License (MIT)
 
 Copyright (c) 2013 Andy Dai
 Copyright (c) 2014 Codethink Ltd.
@@ -19,23 +19,14 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+-->
 
-Template.board_picker.helpers({
-    boards: Boards.find({}),
-    // default select box to current board
-    selectCurrent: function(id) {
-        if(Session.get("boardId")==id)
-            return 'selected';
-    }
-});
-
-Template.board_picker.events({
-    'change select': function(evt) {
-        var id = parseInt($(evt.target).val());
-        Session.set("view",'kanban');
-        Session.set("boardId",id);
-        if(id)
-            subscribeToBoard(id);
-    }
-});
+<template name="triageViewLink">
+    {{#if laneView }}
+        {{#if triage }}
+            <a href="#" class="kanbanViewLink">Kanban View</a>
+        {{ else }}
+            <a href="#" class="triageViewLink">Triage View</a>
+        {{/if }}
+    {{/if }}
+</template>

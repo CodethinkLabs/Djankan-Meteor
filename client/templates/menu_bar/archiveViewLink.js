@@ -21,21 +21,31 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-Template.board_picker.helpers({
-    boards: Boards.find({}),
-    // default select box to current board
-    selectCurrent: function(id) {
-        if(Session.get("boardId")==id)
-            return 'selected';
+Template.archiveViewLink.helpers({
+    archiveView: function() {
+        var view =  Session.get('view');
+        if(view == 'archive')
+            return true;
+        return false;
     }
 });
 
-Template.board_picker.events({
-    'change select': function(evt) {
-        var id = parseInt($(evt.target).val());
-        Session.set("view",'kanban');
-        Session.set("boardId",id);
-        if(id)
-            subscribeToBoard(id);
+Template.archiveViewLink.events({
+    'click .archiveViewLink': function() {
+        var view = Session.get('view');
+        var boardId = Session.get('boardId');
+        Session.set('view','archive');
+        Session.set('tempPrevView',view);
+        Meteor.call('GETarchive', boardId, function(e,r) {
+            updateCardSub(archived=true);
+        });
+    },
+    'click .laneViewLink': function() {
+        var boardId = Session.get('boardId');
+        var prevView = Session.get('tempPrevView');
+        delete Session.keys['tempPrevView'];
+        Session.set('view',prevView);
+        updateCardSub(archived=false);
+        Meteor.call('updateCards',boardId)
     }
 });

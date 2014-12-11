@@ -22,6 +22,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 Template.board.helpers({
+    archiveView: function() {
+        var view = Session.get('view');
+        if(view == 'archive')
+            return true;
+        else
+            return false;
+    },
     lanes: Lanes.find({}),
     boardWidth: function () {
         

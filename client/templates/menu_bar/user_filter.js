@@ -36,6 +36,10 @@ Template.user_filter.events({
             Session.set('userId', ID);
         else
             Session.set('userId', 0);
-        updateCardSub();
+        if(Session.get('view') == 'archive')
+            var getArchived = true;
+        else
+            var getArchived = false;
+        updateCardSub(getArchived);
     }
 });

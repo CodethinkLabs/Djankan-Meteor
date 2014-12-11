@@ -23,6 +23,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 //method to post a new card created on the GUI
 Meteor.methods({
+    GETarchive: function(boardId) {
+        Cards.remove({board:boardId,archived:true});
+        var url = HOST+API+'boards/'+boardId+'/cards/?archived=true';
+        getToCollection(url,Cards);
+    },
     postcard: function(card,boardId) {
         var board = Boards.findOne({id:boardId})
         var url = HOST+API+'boards/'+boardId+'/cards/';
@@ -76,8 +81,7 @@ Meteor.methods({
                 localCard=Cards.findOne({id:gotCard.id})
                 // if no correspoding in collection insert it
                 if(!localCard) {
-                    if(!gotCard.archived)
-                        Cards.insert(gotCard);
+                    Cards.insert(gotCard);
                 }
                 // else check to see if been archived
                 else if(gotCard.archived)
