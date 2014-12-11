@@ -33,6 +33,16 @@ Template.card_content.helpers({
         else
             return;
     },
+    assigneeIconUrl: function(assignee_id) {
+        var assignee = Assignees.findOne({id: assignee_id}).person;
+        var user = Users.findOne({id: assignee});
+        if (user)
+            return Gravatar.imageUrl(user.email, {
+                   size: 18,
+                   default: 'wavatar'
+        });
+        return;
+    },
     shortDescription: function(card_id) {
         var maxLength = 113;
         var description = Cards.findOne({id: card_id}).description;
