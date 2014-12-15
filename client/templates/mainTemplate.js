@@ -22,7 +22,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 Template.mainTemplate.helpers({
-    chosenBoard: function () {
+    boardView: function () {
         if(Session.get("boardId"))
             return true;
         return false;
