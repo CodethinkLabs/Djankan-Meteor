@@ -22,6 +22,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="lane">
+    <style>
+        .lane {
+            width: {{ laneWidth }}px;
+            min-width: 300px;
+        }
+    </style>
     <div class="lane sortable" id='{{ _id }}'>
         {{> lane_header }}
         <ul id="{{ _id }}"

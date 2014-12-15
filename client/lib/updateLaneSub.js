@@ -28,7 +28,17 @@ updateLaneSub = function() {
         laneSub.stop();
     var boardId = Session.get('boardId');
     if(Session.get('view')=='triage')
-        laneSub = Meteor.subscribe('triageLanes', boardId);
+        laneSub = Meteor.subscribe('triageLanes', boardId,function() {
+            var winWidth = $(window).width();
+            var laneNum = Lanes.find().count();
+            console.log('laneNum:'+laneNum);
+            Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
+        });
     else
-        laneSub = Meteor.subscribe('lanes', boardId);
+        laneSub = Meteor.subscribe('lanes', boardId, function() {
+            var winWidth = $(window).width();
+            var laneNum = Lanes.find().count();
+            console.log('laneNum:'+laneNum);
+            Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
+        });
 }

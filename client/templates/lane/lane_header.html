@@ -22,6 +22,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <template name="lane_header">
+    <style>
+        .lane_header {
+            width: {{ laneWidth}}px;
+        }
+    </style>
     <div class="lane_header">
         {{#if edit _id}}
             {{> lane_edit }}

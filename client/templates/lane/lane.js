@@ -21,7 +21,22 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+$(window).resize( function() {
+    var winWidth = $(window).width();
+    var laneNum = Lanes.find().count();
+    Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
+});
+
+Template.lane.rendered = function() {
+    var winWidth = $(window).width();
+    var laneNum = Lanes.find().count();
+    Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
+};
+
 Template.lane.helpers({
+    laneWidth: function() {
+        return Session.get('laneWidth');
+    },
     cards: function(mongo_id) {
         laneID = Lanes.findOne({_id: mongo_id}).id;
         return Cards.find({lane: laneID})

@@ -22,6 +22,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 Template.lane_header.helpers({
+    laneWidth: function() {
+        return Session.get("laneWidth") -16;
+    },
     lanetitle: function(mongo_id) {
         title = Lanes.findOne({_id:mongo_id}).title;
         return title;

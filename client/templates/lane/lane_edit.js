@@ -53,6 +53,9 @@ Template.lane_edit.events = {
         Meteor.call("putlane",_id,title,inTriageView,inKanbanView);
         Session.set("edit",0);
         Meteor.call("updateLanes",boardId);
+        var winWidth = $(window).width();
+        var laneNum = Lanes.find().count();
+        Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
     },
 
     "click .delete_lane": function() {

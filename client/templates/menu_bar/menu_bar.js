@@ -73,7 +73,11 @@ Template.menu_bar.events({
             "deletedDate": "2014-11-10T13:35:59.345Z"
         };
         Meteor.call('postlane',boardId,blankLane);
-        Meteor.call('updateLanes',boardId);
+        Meteor.call('updateLanes',boardId, function() {
+            var winWidth = $(window).width();
+            var laneNum = Lanes.find().count();
+            Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
+        });
     },
     'click .buckets': function() {
         Session.set('menu_edit',0);
