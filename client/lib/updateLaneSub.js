@@ -27,7 +27,7 @@ updateLaneSub = function() {
     if(laneSub)
         laneSub.stop();
     var boardId = Session.get('boardId');
-    if(Session.get('triageView'))
+    if(Session.get('view')=='triage')
         laneSub = Meteor.subscribe('triageLanes', boardId);
     else
         laneSub = Meteor.subscribe('lanes', boardId);

@@ -24,7 +24,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var cardSub;
 var assigneesSub;
 
-updateCardSub = function() {
+updateCardSub = function(getArchived, callback) {
+    
     if(cardSub)
         cardSub.stop();
     if(assigneesSub)
@@ -33,6 +34,6 @@ updateCardSub = function() {
     var userId = Session.get('userId');
     var bucketId = Session.get('bucketId');
     var milestoneId = Session.get('milestoneId');
-    cardSub = Meteor.subscribe('cards', boardId,userId,bucketId,milestoneId);
+    cardSub = Meteor.subscribe('cards', boardId,userId,bucketId,milestoneId,getArchived);
     assigneesSub = Meteor.subscribe('assigneesByBoard', boardId);
 }

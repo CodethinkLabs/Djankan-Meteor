@@ -1,4 +1,4 @@
-<!--The MIT License (MIT)
+/*The MIT License (MIT)
 
 Copyright (c) 2013 Andy Dai
 Copyright (c) 2014 Codethink Ltd.
@@ -19,12 +19,30 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
--->
+*/
 
-<template name="triageView">
-    {{#if triage }}
-        <a href="#" class="kanbanViewLink">Kanban View</a>
-    {{ else }}
-        <a href="#" class="triageViewLink">Triage View</a>
-    {{/if }}
-</template>
+Template.triageViewLink.helpers({
+    triage: function() {
+        var view =  Session.get('view');
+        if(view == 'triage')
+            return true;
+        return false;
+    },
+    laneView: function() {
+        var view = Session.get('view');
+        if(view == 'kanban' || view == 'triage')
+            return true;
+        return false;
+    }
+});
+
+Template.triageViewLink.events({
+    'click .triageViewLink': function() {
+        Session.set('view','triage');
+        updateLaneSub();
+    },
+    'click .kanbanViewLink': function() {
+        Session.set('view','kanban');
+        updateLaneSub();
+    }
+});

@@ -30,14 +30,16 @@ Meteor.publish('cardsByBucket', function(bucket_id) {
 Meteor.publish('cardsByMilestone', function(milestone_id) {
   return Cards.find({milestone: milestone_id});
 });
-Meteor.publish('cards', function(board_id,user_id,bucket_id,milestone_id) {
+Meteor.publish('cards', function(board_id,user_id,bucket_id,milestone_id,getArchived) {
+    if(!getArchived)
+        getArchived=false;
     if(user_id==0 && bucket_id==0 && milestone_id==0)
-        return Cards.find({board:board_id});
+        return Cards.find({board:board_id,archived:getArchived});
     else if(user_id==0) {
         if(bucket_id==0)
-            return Cards.find({milestone:milestone_id});
+            return Cards.find({milestone:milestone_id,archived:getArchived});
         else if(milestone_id==0)
-            return Cards.find({bucket:bucket_id});
+            return Cards.find({bucket:bucket_id,archived:getArchived});
     }
     var assignees = Assignees.find({person:user_id}).fetch();
     var cardsOfAssignee = new Array(assignees.length);
@@ -46,24 +48,28 @@ Meteor.publish('cards', function(board_id,user_id,bucket_id,milestone_id) {
     }
     if(bucket_id==0 && milestone_id==0) {
         return Cards.find({
-            id: { $in: cardsOfAssignee }
+            id: { $in: cardsOfAssignee },
+            archived:getArchived
         });
     }
     else if(bucket_id==0) {
         return Cards.find({
             id: { $in: cardsOfAssignee },
-            milestone:milestone_id
+            milestone:milestone_id,
+            archived:getArchived
         });
     }
     else if(milestone_id==0) {
         return Cards.find({
             id: { $in: cardsOfAssignee },
-            bucket:bucket_id
+            bucket:bucket_id,
+            archived:getArchived
         });
     }
     return Cards.find({
         id: { $in: cardsOfAssignee },
         bucket:bucket_id,
-        milestone:milestone_id
+        milestone:milestone_id,
+        archived:getArchived
     });
 });

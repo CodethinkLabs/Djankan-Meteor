@@ -56,8 +56,11 @@ Template.menu_bar.events({
     },
     'click .new_lane_link': function() {
         boardId = Session.get("boardId");
-        inTriage = Session.get("triageView");
-        console.log(boardId);
+        view = Session.get("view");
+        if(view == 'triage')
+            inTriage = true;
+        else
+            inTriage = false;
         blankLane = {
             "board": boardId,
             "title": "LANE",

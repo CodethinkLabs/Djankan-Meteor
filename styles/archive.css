@@ -1,0 +1,23 @@
+.archive {
+    width: 100%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: left;
+    padding: 2px;
+}
+table th {
+    padding: 8px;
+}
+table td {
+    min-width:124px;
+    width:15%;
+}
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+table tr:nth-child(odd) {
+   background-color:#fff;
+}

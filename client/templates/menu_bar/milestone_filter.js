@@ -36,6 +36,10 @@ Template.milestone_filter.events({
             Session.set('milestoneId', ID);
         else
             Session.set('milestoneId', 0);
-        updateCardSub();
+        if(Session.get('view') == 'archive')
+            var getArchived = true;
+        else
+            var getArchived = false;
+        updateCardSub(getArchived);
     }
 });
