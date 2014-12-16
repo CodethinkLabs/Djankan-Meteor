@@ -31,14 +31,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         {{#if edit _id}}
             {{> lane_edit }}
         {{ else }}
-            <h2>{{ lanetitle _id }}</h2>
+            <a class="edit_lane"
+               href="#">
+                {{ lanetitle _id }}
+            </a>
             <a class="add_card_link"
                href="#">
                 +
-            </a>
-            <a class="edit_lane"
-               href="#">
-                &#x270E;<!-- unicode pensil -->
             </a>
         {{/if }}
     </div>

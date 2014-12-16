@@ -47,22 +47,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     width: 285px;
 }
 
-.lane h2 {
+.edit_lane {
+    text-decoration: none;
     font-size: 24px;
     display:table-cell;    
+    color: #1A766F;
+}
+
+.edit_lane:hover {
+    text-decoration: underline;
 }
 
 .lane_title_wrapper {
     width: 50%;
-}
-
-.edit_lane {
-    text-decoration: none;
-    color: #1A766F;
-    font-size: 32px;
-    float: right;
-    line-height: 18px;
-    display:table-cell;
 }
 
 .add_card_link {
