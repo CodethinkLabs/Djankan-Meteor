@@ -39,7 +39,7 @@ Template.lane.helpers({
     },
     cards: function(mongo_id) {
         laneID = Lanes.findOne({_id: mongo_id}).id;
-        return Cards.find({lane: laneID})
+        return Cards.find({lane: laneID}, {sort: {postion: 1}});
     },
     laneposition: function(mongo_id) {
         position = Lanes.findOne({_id:mongo_id}).position;

@@ -34,6 +34,7 @@ Meteor.methods({
         var nextCardNumber = ++board.nextCardNumber;
         Boards.update({id:boardId},{ '$set': {'nextCardNumber':nextCardNumber}});
         card.header.cardNumber=nextCardNumber;
+        card.position=nextCardNumber;
         try {
             var r = HTTP.call("POST",url,{data: card});
         }
@@ -70,6 +71,23 @@ Meteor.methods({
             console.log(e);
         }
     },
+ 
+    putAllCardsInLane: function(laneId) {
+        var cards=Cards.find({lane:laneId});
+        cards.forEach(function(card) {
+            console.log("card.position "+card.position);
+            console.log("card.id "+card.id);
+            var ID = card.id;
+            var url = HOST+API+'card/'+ID;
+            try {
+                var r = HTTP.call("PUT",url,{data: card});
+            }
+            catch(e) {
+                console.log(url);
+                console.log(e);
+            }
+        });
+    },
 
     updateCards: function(boardId) {
         url=HOST+API+'boards/'+boardId+'/cards/';
@@ -84,8 +102,6 @@ Meteor.methods({
                     Cards.insert(gotCard);
                 }
                 // else check to see if been archived
-                else if(gotCard.archived)
-                    Cards.remove(localCard)
                 // else check to see if title or description or lane changed
                 else if(gotCard.description!=localCard.description)
                     Cards.update(localCard,gotCard);
@@ -96,6 +112,28 @@ Meteor.methods({
                 else if(gotCard.bucket!=localCard.bucket)
                     Cards.update(localCard,gotCard);
                 else if(gotCard.milestone!=localCard.milestone)
+                    Cards.update(localCard,gotCard);
+                else if(gotCard.archived!=localCard.archived)
+                    Cards.update(localCard,gotCard);
+            }
+        }
+        catch (e) {
+            console.log("Response issue: url: "+url);
+        }
+    },
+    updateCardsInLane: function(laneId,boardId) {
+        url=HOST+API+'boards/'+boardId+'/lanes/'+laneId+'/cards';
+        try {
+            var r = HTTP.call("GET", url);
+            var respJson = JSON.parse(r.content)
+            for(var i=0;i<respJson.length;i++) {
+                gotCard=respJson[i]
+                localCard=Cards.findOne({id:gotCard.id})
+                // if no correspoding in collection insert it
+                if(!localCard) {
+                    Cards.insert(gotCard);
+                }
+                else
                     Cards.update(localCard,gotCard);
             }
         }

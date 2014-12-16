@@ -32,15 +32,14 @@ function initialSortable() {
             // put lane Ids in an array according to their order on the page
             var boardId = Session.get('boardId');
             var laneIds = $(this).sortable('toArray');
-            console.log($(this).sortable('toArray'))
-            var lanes = Lanes.find({});
             // for each lane id find it's lane in the collection and update it's position
             laneIds.forEach(function (laneId) {
                 if(laneId) {
                     var lane = Lanes.findOne({_id:laneId});
                     var position = laneIds.indexOf(laneId);
                     lane.position=position;
-                    Lanes.update({_id:lane._id},lane);
+                    // TODO this is causing flicker, find a better way to do putlanes
+                    Lanes.update({_id:laneId},lane);
                 }
             });
             Meteor.call('putlanes',boardId);
@@ -56,6 +55,22 @@ function initialSortable() {
         placeholder: 'card_placeholder',
         connectWith: 'ul',
         update: function(event, ui) {
+            var boardId = Session.get('boardId');
+            var lane_id = this.id;
+            var mongoLane = Lanes.findOne({_id:lane_id});
+            var laneId = mongoLane.id;
+            var cardIds = $(this).sortable('toArray');
+            cardIds.forEach(function (cardId) {
+                if(cardId) {
+                    var card = Cards.findOne({_id:cardId});
+                    var position = cardIds.indexOf(cardId);
+                    card.position=position;
+                    console.log("position: "+card.position);
+                    Cards.update({_id:cardId},{ '$set': {'position':position}});
+                }
+            });
+            Meteor.call('putAllCardsInLane',laneId);
+            Meteor.call('updateCards',laneId,boardId);
         },
         stop: function(event, ui) {
             // get card id
