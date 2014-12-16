@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Template.dash.helpers({
     boards: function () {
-        return Boards.find({});
+        return Boards.find({}, {sort: {id: 1}});
     }
 });
 
