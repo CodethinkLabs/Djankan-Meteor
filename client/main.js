@@ -32,13 +32,16 @@ function initialSortable() {
             // put lane Ids in an array according to their order on the page
             var boardId = Session.get('boardId');
             var laneIds = $(this).sortable('toArray');
+            console.log($(this).sortable('toArray'))
             var lanes = Lanes.find({});
             // for each lane id find it's lane in the collection and update it's position
             laneIds.forEach(function (laneId) {
-                var lane = Lanes.findOne({_id:laneId});
-                var position = laneIds.indexOf(laneId);
-                lane.position=position;
-                Lanes.update({_id:lane._id},lane);
+                if(laneId) {
+                    var lane = Lanes.findOne({_id:laneId});
+                    var position = laneIds.indexOf(laneId);
+                    lane.position=position;
+                    Lanes.update({_id:lane._id},lane);
+                }
             });
             Meteor.call('putlanes',boardId);
             Meteor.call('updateLanes',boardId);

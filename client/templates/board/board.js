@@ -39,6 +39,6 @@ Template.board.helpers({
         else
             return false;
     },
-    lanes: Lanes.find({}),
+    lanes: Lanes.find({}, {sort: {position: 1}}),
     boardHeight: $(window).height() - 41
 });
