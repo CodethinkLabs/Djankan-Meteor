@@ -56,13 +56,13 @@ Template.menu_content.helpers({
     },
     itemEdit: function(kind) {
         _id = Session.get("menu_edit");
-        if(kind == "bucket") 
+        if(kind == "bucket")
             return Buckets.findOne({_id:_id});
         else if(kind == "board") {
             blankBoard = {
-                "title": "Title", 
-                "createDate": "2014-11-14T16:46:11.543Z", 
-                "archived": false, 
+                "title": "Title",
+                "createDate": "2014-11-14T16:46:11.543Z",
+                "archived": false,
                 "description": "description"
             };
             Session.set("tempBoard",blankBoard);
@@ -74,7 +74,7 @@ Template.menu_content.helpers({
         if(kind == "bucket")
             return false;
         return true;
-    }
+        }
 });
 
 Template.menu_content.events({
@@ -83,6 +83,8 @@ Template.menu_content.events({
     },
     "click .edit": function() {
         Session.set("menu_edit",this._id);
+        // for some reason this does not work if it is inline
+        setTimeout(function(){$("#datepicker").datepicker()},0);
     },
     "click .discard": function() {
         Session.set("menu_edit",0);
@@ -111,7 +113,7 @@ Template.menu_content.events({
             var boardId = Session.get("boardId");
             Meteor.call("putmilestone",boardId,this._id,title,descr);
             Session.set("menu_edit",0);
-        } 
+        }
     },
     "click .delete": function() {
         kind=Session.get("menu");
@@ -130,9 +132,9 @@ Template.menu_content.events({
         boardId=Session.get("boardId");
         if(kind=="bucket") {
             blankBucket = {
-                "board": boardId, 
-                "title": "New Bucket", 
-                "colour": "blue", 
+                "board": boardId,
+                "title": "New Bucket",
+                "colour": "blue",
                 "description": "description"
             }
             Meteor.call("postbucket",blankBucket,boardId);
@@ -140,9 +142,9 @@ Template.menu_content.events({
         else {
             blankMilestone = {
                 "board": boardId,
-                "title": "New Milestone", 
-                "dueDate": "2014-11-10T09:16:29Z", 
-                "colour": "red", 
+                "title": "New Milestone",
+                "dueDate": "2014-11-10T09:16:29Z",
+                "colour": "red",
                 "description": "description"
             };
             Meteor.call("postmilestone",blankMilestone,boardId);
