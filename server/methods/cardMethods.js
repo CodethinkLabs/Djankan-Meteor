@@ -35,7 +35,9 @@ Meteor.methods({
         Boards.update({id:boardId},{ '$set': {'nextCardNumber':nextCardNumber}});
         card.header.cardNumber=nextCardNumber;
         try {
-            var r = HTTP.call("POST",url,{data: card});
+            var r = HTTP.call("POST",url,{data: card},function() {
+                Meteor.call('updateCards',boardId)
+            });
         }
         catch (e) {
             console.log(e);
@@ -45,6 +47,7 @@ Meteor.methods({
     putcard: function(card_id,title,description,archive,bucket,milestone) {
         card = Cards.findOne({_id:card_id});
         ID = card.id;
+        board = card.board;
         card.title=title;
         card.description=description;
         card.archived=archive;
@@ -63,7 +66,9 @@ Meteor.methods({
         delete card['_id'];
         url = HOST+API+'card/'+ID+'/';
         try {
-            r = HTTP.call("PUT",url,{data: card});
+            r = HTTP.call("PUT",url,{data: card}, function() {
+                Meteor.call('updateCards',board)
+            });
         }
         catch (e) {
             console.log(card);

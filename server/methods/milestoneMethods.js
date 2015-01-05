@@ -27,7 +27,9 @@ Meteor.methods({
         url = HOST+API+'milestone/'+ milestone_id +'/';
         try {
             r = HTTP.call("DELETE",url);
+            milestone = Milestones.findOne({id: milestone_id});
             Milestones.remove({id: milestone_id});
+            Meteor.call('updateMilestones',milestone.board)
         }
         catch (e) {
             console.log(e);
@@ -36,7 +38,9 @@ Meteor.methods({
     postmilestone: function(milestone,boardId) {
         url = HOST+API+'boards/'+boardId+'/milestones/';
         try {
-            r = HTTP.call("POST",url,{data: milestone});
+            r = HTTP.call("POST",url,{data: milestone}, function() {
+                Meteor.call('updateMilestones',boardId)
+            });
         }
         catch (e) {
             console.log(e);
@@ -51,7 +55,9 @@ Meteor.methods({
         delete milestone['_id'];
         var url = HOST+API+'boards/'+boardId+'/milestones/'+ID+'/';
         try {
-            r = HTTP.call("PUT",url,{data: milestone});
+            r = HTTP.call("PUT",url,{data: milestone}, function() {
+                Meteor.call('updateMilestones',boardId)
+            });
         }
         catch (e) {
             console.log(milestone);

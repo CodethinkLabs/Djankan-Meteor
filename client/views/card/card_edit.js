@@ -40,7 +40,6 @@ Template.card_edit.events = {
         var milestone = Session.get('tempMilestone');
         delete Session.keys['tempMilestone'];
         Meteor.call('putcard',_id,title,descr,archived,bucket,milestone);
-        Meteor.call('updateCards',boardId);
         // when edit set to 0 in session card_edit template is removed
         // and card_content rendered
         Session.set("edit",0);
@@ -58,13 +57,11 @@ Template.card_edit.events = {
         var selectBox = document.getElementById("assignee_picker");
         var selectValue = selectBox.options[selectBox.selectedIndex].value;
         Meteor.call('postAssignee', card_mongo_id, selectValue);
-        Meteor.call('updateAssignees', card_id);
     },
     "click .remove_assignee_link": function (e) {
         var assignee_id = parseInt(e.currentTarget.id);
         var card_id = Assignees.findOne({id: assignee_id}).card;
         Meteor.call('deleteAssignee', assignee_id);
-        Meteor.call('updateAssignees', card_id);
     },
     "change .bucket_picker": function(evt) {
         /*  put the bucket in a temporary session var so that the data

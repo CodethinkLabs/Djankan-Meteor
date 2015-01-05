@@ -63,6 +63,5 @@ Template.archive.events({
             card.bucket,
             card.milestone
         );
-        Meteor.call('updateCards',boardId);
     }
 });

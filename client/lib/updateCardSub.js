@@ -25,7 +25,6 @@ var cardSub;
 var assigneesSub;
 
 updateCardSub = function(getArchived, callback) {
-    
     if(cardSub)
         cardSub.stop();
     if(assigneesSub)

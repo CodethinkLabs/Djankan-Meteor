@@ -26,7 +26,10 @@ Meteor.methods({
         url = HOST+API+'assignee/'+ assignee_id +'/';
         try {
             r = HTTP.call("DELETE",url);
-            Assignees.remove({id: assignee_id});
+            assignee = Assignees.findOne({id: assignee_id});
+            assigneeCard = assignee.card
+            Assignees.remove(assignee);
+            Meteor.call('updateAssignees',assigneeCard)
         }
         catch (e) {
             console.log(e);
@@ -43,7 +46,9 @@ Meteor.methods({
             "assignee_role": "NORM"
         };
         try {
-            r = HTTP.call("POST",url,{data: assignee});
+            r = HTTP.call("POST",url,{data: assignee}, function() {
+                Meteor.call('updateAssignees',card.id);
+            });
         }
         catch (e) {
             console.log(e);

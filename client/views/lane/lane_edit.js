@@ -52,7 +52,6 @@ Template.lane_edit.events = {
         var inKanbanView = $('#inKanbanCheck').prop('checked');
         Meteor.call("putlane",_id,title,inTriageView,inKanbanView);
         Session.set("edit",0);
-        Meteor.call("updateLanes",boardId);
         var winWidth = $(window).width();
         var laneNum = Lanes.find().count();
         Session.set('laneWidth',Math.max(300, Math.floor(winWidth/laneNum)-12));
@@ -63,6 +62,5 @@ Template.lane_edit.events = {
         var id=this.id
         Meteor.call("deleteLane",id);
         Session.set("edit",0);
-        Meteor.call("updateLanes",boardId);
     }
 }

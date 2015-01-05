@@ -62,7 +62,6 @@ Template.lane_header.events = {
         };
         boardId = Session.get('boardId');
         Meteor.call('postcard',blankCard,boardId);
-        Meteor.call('updateCards',boardId);
     },
     "click .edit_lane": function() {
         Session.set("edit",this._id);

@@ -25,8 +25,11 @@ Meteor.methods({
     deleteLane: function(lane_id) {
         url = HOST+API+'lane/'+ lane_id +'/';
         try {
-            r = HTTP.call("DELETE",url);
-            Lanes.remove({id: lane_id});
+            lane = Lanes.findOne({id:lane_id});
+            Lanes.remove(lane);
+            r = HTTP.call("DELETE",url, function() {
+                Meteor.call('updateLanes',lane.board)
+            });
         }
         catch (e) {
             console.log(e);
@@ -35,11 +38,15 @@ Meteor.methods({
     changeLane: function(card_id,lane) {
         card = Cards.findOne({_id:card_id});
         card.lane=lane;
+        Lane = Lanes.findOne({id:lane});
+        boardId = Lane.board;
         ID = card.id;
         delete card['_id'];
         url = HOST+API+'card/'+ID+'/';
         try {
-            r = HTTP.call("PUT",url,{data: card});
+            r = HTTP.call("PUT",url,{data: card}, function() {
+                Meteor.call('updateCards',boardId);
+            });
         }
         catch (e) {
             console.log(card);
@@ -51,7 +58,9 @@ Meteor.methods({
         console.log(boardId);
         url = HOST+API+'boards/'+boardId+'/lanes/';
         try {
-            r = HTTP.call("POST",url,{data: lane});
+            r = HTTP.call("POST",url,{data: lane}, function() {
+                Meteor.call('updateLanes',boardId);
+            });
         }
         catch (e) {
             console.log(e);
@@ -64,10 +73,13 @@ Meteor.methods({
         lane.title=title;
         lane.inTriageView=inTriageView;
         lane.inKanbanView=inKanbanView;
+        boardId = lane.board;
         delete lane['_id'];
         url = HOST+API+'boards/'+BOARD_ID+'/lanes/'+ID+'/';
         try {
-            r = HTTP.call("PUT",url,{data: lane});
+            r = HTTP.call("PUT",url,{data: lane},function() {
+                Meteor.call('updateLanes',boardId);
+            });
         }
         catch (e) {
             console.log(lane);
@@ -81,7 +93,9 @@ Meteor.methods({
             ID = lane.id;
             url = HOST+API+'boards/'+boardId+'/lanes/'+ID+'/';
             try {
-                r = HTTP.call("PUT",url,{data: lane});
+                r = HTTP.call("PUT",url,{data: lane},function() {
+                    Meteor.call('updateLanes',boardId);
+                });
             }
             catch (e) {
                 console.log(card);

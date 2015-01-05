@@ -27,7 +27,9 @@ Meteor.methods({
         url = HOST+API+'bucket/'+ bucket_id +'/';
         try {
             r = HTTP.call("DELETE",url);
+            bucket = Buckets.findOne({id: bucket_id});
             Buckets.remove({id: bucket_id});
+            Meteor.call('updateBuckets',bucket.board)
         }
         catch (e) {
             console.log(e);
@@ -36,7 +38,9 @@ Meteor.methods({
     postbucket: function(bucket,boardId) {
         url = HOST+API+'boards/'+boardId+'/buckets/';
         try {
-            r = HTTP.call("POST",url,{data: bucket});
+            r = HTTP.call("POST",url,{data: bucket}, function() {
+                Meteor.call('updateBuckets',boardId)
+            });
         }
         catch (e) {
             console.log(e);
@@ -50,7 +54,9 @@ Meteor.methods({
         delete bucket['_id'];
         var url = HOST+API+'boards/'+boardId+'/buckets/'+ID+'/';
         try {
-            r = HTTP.call("PUT",url,{data: bucket});
+            r = HTTP.call("PUT",url,{data: bucket}, function() {
+                Meteor.call('updateBuckets',boardId)
+            });
         }
         catch (e) {
             console.log(bucket);

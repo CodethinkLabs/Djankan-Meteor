@@ -96,7 +96,6 @@ Template.menu_content.events({
         if(kind=="bucket") {
             var boardId=Session.get("boardId");
             Meteor.call("putbucket",boardId,this._id,title,descr);
-            Meteor.call("updateBuckets",boardId);
             Session.set("menu_edit",0);
         }
         else if(kind=="board") {
@@ -111,7 +110,6 @@ Template.menu_content.events({
         else {
             var boardId = Session.get("boardId");
             Meteor.call("putmilestone",boardId,this._id,title,descr);
-            Meteor.call("updateMilestones",boardId);
             Session.set("menu_edit",0);
         } 
     },
@@ -121,11 +119,9 @@ Template.menu_content.events({
         var id=this.id
         if(kind=="bucket") {
             Meteor.call("deleteBucket",id);
-            Meteor.call("updateBuckets",boardId);
         }
         if(kind=="milestone") {
             Meteor.call("deleteMilestone",id);
-            Meteor.call("updateMilestones",boardId);
         }
         Session.set("menu_edit",0);
     },
@@ -140,7 +136,6 @@ Template.menu_content.events({
                 "description": "description"
             }
             Meteor.call("postbucket",blankBucket,boardId);
-            Meteor.call("updateBuckets",boardId);
         }
         else {
             blankMilestone = {
@@ -151,7 +146,6 @@ Template.menu_content.events({
                 "description": "description"
             };
             Meteor.call("postmilestone",blankMilestone,boardId);
-            Meteor.call("updateMilestones",boardId);
         }
     }
 });
