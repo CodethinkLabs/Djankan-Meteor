@@ -23,47 +23,51 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <template name="menu_bar">
     <div class="menu_bar">
-
         <span class="board_title">
            <h1>{{ boardName }}</h1>
         </span>
-
         <span class="board_menu">
             {{> board_picker }}
         </span>
-
-        {{#if onBoard}}
-            <span class="filter_menu">
-                users
-                {{>user_filter}}
-                <a class="buckets" href="#">buckets</a>
-                {{> bucket_filter }}
-                <a class="milestones" href="#">milestones</a>
-                {{> milestone_filter }}
-            </span>
-                <a class="new_lane_link" href="#">new lane</a>
-            {{> triageViewLink }}
-            {{> archiveViewLink }}
-            <span class="reset_button">
-                   <input type="button"
-                          class="refreshBoard"
-                          value="Refresh Board">
-            </span>
-
+        {{#if isBoardView }}
+            {{> boardMenuBar }}
         {{ else }}
-                <a class="newBoard" href="#">newBoard</a>
-            <span class="reset_button">
-                <input type="button"
-                       class="refreshAllBoards"
-                       value="Refresh Boards">
-            </span>
+            {{> dashMenuBar }}
         {{/if }}
-
-        <span class="logo">
-            <img src="/images/logo.gif"
-                 alt="Codethink Ltd."
-                 height="28"
-                 width="130">
-        </span>
+        {{> logo }}
     </div>
+</template>
+
+<template name="boardMenuBar">
+    <span class="filter_menu">
+        users
+        {{>user_filter}}
+        <a class="buckets" href="#">buckets</a>
+        {{> bucket_filter }}
+        <a class="milestones" href="#">milestones</a>
+        {{> milestone_filter }}
+    </span>
+    <a class="new_lane_link" href="#">new lane</a>
+    {{> triageViewLink }}
+    {{> archiveViewLink }}
+    <span class="reset_button">
+    </span>
+</template>
+
+<template name="dashMenuBar">
+    <a class="newBoard" href="#">newBoard</a>
+    <span class="reset_button">
+        <input type="button"
+               class="refreshAllBoards"
+               value="Refresh Boards">
+    </span>
+</template>
+
+<template name="logo">
+    <span class="logo">
+        <img src="/images/logo.gif"
+             alt="Codethink Ltd."
+             height="28"
+             width="130">
+    </span>
 </template>

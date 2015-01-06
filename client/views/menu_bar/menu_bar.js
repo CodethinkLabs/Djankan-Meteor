@@ -39,20 +39,37 @@ Template.menu_bar.helpers({
         else
             return "Kanban";
     },
-    onBoard: function() {
+    isBoardView: function() {
         if(Session.get('boardId'))
             return true;
         return false;
+    },
+    isNarrowBrowser: function() {
+        if( $(window).width() < 1412 )
+            return true
+        return false
     }
 });
 
-Template.menu_bar.events({
+Template.boardMenuBar.helpers({
+    boardName: function() {
+        var boardId = Session.get('boardId');
+        if(boardId)
+            return Boards.findOne({id:boardId}).title;
+        else
+            return "Kanban";
+    },
+    isBoardView: function() {
+        if(Session.get('boardId'))
+            return true;
+        return false;
+    },
+});
+
+Template.boardMenuBar.events({
     'click input.refreshBoard': function() {
         var boardId = Session.get('boardId');
         Meteor.call('GETBoard',boardId);
-    },
-    'click input.refreshAllBoards': function() {
-        Meteor.call('refreshAllBoards');
     },
     'click .new_lane_link': function() {
         boardId = Session.get("boardId");
@@ -86,6 +103,12 @@ Template.menu_bar.events({
     'click .milestones': function() {
         Session.set('menu_edit',0);
         Session.set('menu','milestone');
+    }
+});
+
+Template.dashMenuBar.events({
+    'click input.refreshAllBoards': function() {
+        Meteor.call('refreshAllBoards');
     },
     'click .newBoard': function() {
         Session.set('menu_edit',1);
