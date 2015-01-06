@@ -103,6 +103,18 @@ Template.boardMenuBar.events({
     'click .milestones': function() {
         Session.set('menu_edit',0);
         Session.set('menu','milestone');
+    },
+    'change #setBoardView': function(evt) {
+        console.log('setboardview')
+        var view = $(evt.target).val();
+        Session.set("view",view);
+        if(view == 'archive'){
+            updateCardSub(archived=true);
+        }
+        else {
+            updateLaneSub();
+            updateCardSub(archived=false);
+        }
     }
 });
 

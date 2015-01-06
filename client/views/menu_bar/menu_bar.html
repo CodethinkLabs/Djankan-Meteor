@@ -48,10 +48,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         {{> milestone_filter }}
     </span>
     <a class="new_lane_link" href="#">new lane</a>
-    {{> triageViewLink }}
-    {{> archiveViewLink }}
-    <span class="reset_button">
-    </span>
+    view:
+    <select id="setBoardView">
+        <option value="kanban">Kanban</option>
+        <option value="triage">Triage</option>
+        <option value="archive">Archive</option>
+    </select>
 </template>
 
 <template name="dashMenuBar">
