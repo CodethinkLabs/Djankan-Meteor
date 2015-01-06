@@ -82,7 +82,9 @@ Meteor.methods({
     refreshAllBoards: function() {
         Boards.remove({});
         var board_url = HOST+API+'boards/';
+        var userURl = HOST+API+'users/';
         getToCollection(board_url,Boards);
+        getToCollection(users_url,Users);
         var boards = Boards.find({});
         boards.forEach( function(board) {
             Boards.update(board, {'$set' : {'active' : false }});
