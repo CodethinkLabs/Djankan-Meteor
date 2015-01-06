@@ -47,11 +47,12 @@ Meteor.methods({
         }
     },
 
-    putmilestone: function(boardId,milestone_id,title,description) {
+    putmilestone: function(boardId,milestone_id,title,description,dueDate) {
         var milestone = Milestones.findOne({_id:milestone_id});
         var ID = milestone.id;
         milestone.title=title;
         milestone.description=description;
+        milestone.dueDate=dueDate;
         delete milestone['_id'];
         var url = HOST+API+'boards/'+boardId+'/milestones/'+ID+'/';
         try {
