@@ -60,12 +60,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         >{{ description }}</textarea>
                         <br>
                         <br>
-                    </div>
                     <br>
                     {{#if isMilestone }}
-                        due: <input type="text" id="datepicker">
+                        due: <input type="text"
+                                    id="datepicker"
+                                    value={{ dueDate }}>
                         <br>
                     {{/if }}
+                    </div>
                     <span>
                         <button class="save">Save</button>
                         <button class="delete">Delete</button>

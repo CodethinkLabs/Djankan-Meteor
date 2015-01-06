@@ -74,7 +74,7 @@ Template.menu_content.helpers({
         if(kind == "bucket")
             return false;
         return true;
-        }
+    }
 });
 
 Template.menu_content.events({
@@ -109,9 +109,12 @@ Template.menu_content.events({
             Meteor.call('refreshAllBoards');
             Session.set("menu",0);
         }
-        else {
+        else if(kind=="milestone") {
+            dueDate = $('.editor').find('input[id="datepicker"]').val();
+            if(dueDate)
+                dueDate = new Date(dueDate);
             var boardId = Session.get("boardId");
-            Meteor.call("putmilestone",boardId,this._id,title,descr);
+            Meteor.call("putmilestone",boardId,this._id,title,descr,dueDate);
             Session.set("menu_edit",0);
         }
     },
