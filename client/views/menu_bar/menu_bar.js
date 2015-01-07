@@ -59,6 +59,11 @@ Template.boardMenuBar.helpers({
         else
             return "Kanban";
     },
+    isOptionTheCurrentView: function(option) {
+        currentView = Session.get('view');
+        if(option == currentView)
+            return 'selected';
+    },
     isBoardView: function() {
         if(Session.get('boardId'))
             return true;

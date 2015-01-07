@@ -50,9 +50,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <a class="new_lane_link" href="#">new lane</a>
     view:
     <select id="setBoardView">
-        <option value="kanban">Kanban</option>
-        <option value="triage">Triage</option>
-        <option value="archive">Archive</option>
+        <option value="kanban" {{ isOptionTheCurrentView  "kanban"}}>Kanban</option>
+        <option value="triage" {{ isOptionTheCurrentView  "triage"}}>Triage</option>
+        <option value="archive" {{ isOptionTheCurrentView  "archive"}}>Archive</option>
     </select>
 </template>
 
