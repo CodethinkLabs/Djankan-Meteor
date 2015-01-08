@@ -56,10 +56,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     padding-left: 20px;
 }
 
+.login {
+    position: absolute;
+    right: 0;
+    padding-right: 200px;
+}
+
 .logo {
     position: absolute;
     right: 0;
-    bottom: 0;
     padding-right: 8px;
 }
 
@@ -71,6 +76,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .menu_bar a:hover {
     text-decoration: underline;
 }
+.login a {
+    color: black;
+}
+
+#login-sign-in-link {
+    color: white;
+}
+
 
 select {
     padding:1px;

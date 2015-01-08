@@ -70,7 +70,11 @@ Template.boardMenuBar.helpers({
         return false;
     },
 });
-
+Template.menu_bar.events({
+    'click #dashLink': function() {
+        Session.set('boardId',0);
+    }
+});
 Template.boardMenuBar.events({
     'click input.refreshBoard': function() {
         var boardId = Session.get('boardId');
