@@ -74,6 +74,14 @@ Template.menu_content.helpers({
         if(kind == "bucket")
             return false;
         return true;
+    },
+    dueDateReadable: function() {
+        var dueDate = this.dueDate;
+        dueDate = dueDate.split('T')[0];
+        dueDate = dueDate.split('-');
+        dueDate = [dueDate[1],dueDate[2],dueDate[0]];
+        dueDate = dueDate.join('/');
+        return dueDate;
     }
 });
 
