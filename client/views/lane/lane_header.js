@@ -37,16 +37,17 @@ Template.lane_header.helpers({
 });
 Template.lane_header.events = {
     "click .add_card_link": function() {
-        console.log(this)
-        var id = this.id
+        var laneid = this.id
+        var creatorEmail = Meteor.user().emails[0].address;
+        var creatorProfile = UserProfiles.findOne({email:creatorEmail})
         //put a new card header and blank card then get
         blankCard = {
             "header": {
                 "cardNumber": 0,
                 "createDate": "2014-11-05T11:49:38.077Z", 
-                 "creator": 1
+                 "creator": creatorProfile.id
             }, 
-            "lane": id,
+            "lane": laneid,
             "milestone": null, 
             "bucket": null, 
             "title": "Title", 
@@ -57,7 +58,7 @@ Template.lane_header.events = {
             "modifiedDate": "2014-11-05T13:38:52.905Z", 
             "archived": false, 
             "position": 1, 
-            "lastUser": 1, 
+            "lastUser": creatorProfile.id, 
             "supersededBy": null
         };
         boardId = Session.get('boardId');
