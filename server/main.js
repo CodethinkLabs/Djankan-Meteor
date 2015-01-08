@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Meteor.startup(function() {
     Boards.remove({});
-    UserProfiles.remove({});
+    /* UserProfiles.remove({}); */
     //get boards
     board_url = HOST+API+'boards/';
     getToCollection(board_url,Boards);
@@ -33,7 +33,25 @@ Meteor.startup(function() {
         Boards.update(board, {'$set' : {'active' : false }})
         Boards.update(board, {'$set' : {'nextCardNumber' : 0 }})
     });
+    getUserProfiles();
     //get users
-    users_url = HOST+API+'users/';
-    getToCollection(users_url,UserProfiles);
+    /* users_url = HOST+API+'users/'; */
+    /* getToCollection(users_url,UserProfiles, function() { */
+    /*     Temp = new Meteor.Collection('temp'); */
+    /*     userProfilesUrl = users_url+'profile/'; */
+    /*     getToCollection(userProfilesUrl,Temp, function() { */
+    /*         console.log(Temp.find().fetch()); */
+    /*         console.log('foo'); */
+    /*         var users = UserProfiles.find(); */
+    /*         users.forEach( function(aUser) { */
+    /*             console.log(Temp.findOne()) */
+    /*             console.log(aUser.id) */
+    /*             var userProfile = Temp.findOne({"user":aUser.id}); */
+    /*             console.log(userProfile) */
+    /*             UserProfiles.update(aUser,{'$set':{'id':userProfile.id}}); */
+    /*         }); */
+    /*         Temp.remove(); */
+    /*         delete Temp; */
+    /*     }); */
+    /* }); */
 });

@@ -21,8 +21,20 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-Meteor.methods({
-    updateUsers: function(card_id) {
-        getUserProfiles();
-    }
-});
+getUserProfiles = function(callback) {
+    UserProfiles.remove({});
+    var users_url = HOST+API+'users/';
+    var userProfilesUrl = users_url+'profile/';
+    getToCollection(users_url,UserProfiles, function() {
+        getToCollection(userProfilesUrl,UserProfilesLoading, function() {
+            var users = UserProfiles.find();
+            users.forEach( function(aUser) {
+                var userProfile = UserProfilesLoading.findOne({"user":aUser.id});
+                UserProfiles.update(aUser,{'$set':{'id':userProfile.id}});
+            });
+            UserProfilesLoading.remove({});
+            if(callback)
+                callback();
+        });
+    });
+};
