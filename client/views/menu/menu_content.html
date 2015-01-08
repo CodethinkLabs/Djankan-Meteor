@@ -64,7 +64,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     {{#if isMilestone }}
                         due: <input type="text"
                                     id="datepicker"
-                                    value={{ dueDate }}>
+                                    value={{ dueDateReadable }}>
                         <br>
                     {{/if }}
                     </div>
@@ -82,6 +82,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <li>
                             <b>{{ title }}</b>
                             {{ description }}
+                            {{#if isMilestone }}
+                                <b>due:</b> {{ dueDateReadable }}
+                            {{/if }}
                             <a class="edit" href="#">edit</a>
                         </li>
                     {{/each }}
