@@ -22,7 +22,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 Template.user_filter.helpers({
-    users: Users.find({}),
+    users: UserProfiles.find({}),
     selectCurrent: function(id) {
         if(Session.get("userId")==id)
             return 'selected';

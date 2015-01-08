@@ -27,7 +27,7 @@ Template.card_content.helpers({
     },
     assigneeName: function(assignee_id) {
         assignee = Assignees.findOne({id: assignee_id}).person;
-        user = Users.findOne({id: assignee});
+        user = UserProfiles.findOne({id: assignee});
         if (user)
             return user.username;
         else
@@ -35,7 +35,7 @@ Template.card_content.helpers({
     },
     assigneeIconUrl: function(assignee_id) {
         var assignee = Assignees.findOne({id: assignee_id}).person;
-        var user = Users.findOne({id: assignee});
+        var user = UserProfiles.findOne({id: assignee});
         if (user)
             return Gravatar.imageUrl(user.email, {
                    size: 18,

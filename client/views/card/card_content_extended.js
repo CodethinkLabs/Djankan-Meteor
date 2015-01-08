@@ -27,7 +27,7 @@ Template.card_content_extended.helpers({
     },
     assigneeName: function(assignee_id) {
         assignee = Assignees.findOne({id: assignee_id}).person;
-        user = Users.findOne({id: assignee});
+        user = UserProfiles.findOne({id: assignee});
         if (user)
             return user.username;
         else

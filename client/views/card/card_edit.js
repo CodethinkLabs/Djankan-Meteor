@@ -81,7 +81,7 @@ Template.card_edit.events = {
 
 Template.card_edit.helpers({
     users: function (cardId) {
-        var users = Users.find({});
+        var users = UserProfiles.find({});
         var toReturn = new Array;
         // take only users not already assigned to card
         users.forEach(function(user) {
@@ -95,7 +95,7 @@ Template.card_edit.helpers({
     },
     assigneeName: function(assignee_id) {
         assignee = Assignees.findOne({id: assignee_id}).person;
-        return Users.findOne({id: assignee}).username;
+        return UserProfiles.findOne({id: assignee}).username;
     },
     getAssigneeColor: function() {
         if (flag) {

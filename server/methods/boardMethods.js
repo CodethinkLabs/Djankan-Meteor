@@ -84,7 +84,7 @@ Meteor.methods({
         var board_url = HOST+API+'boards/';
         var userURl = HOST+API+'users/';
         getToCollection(board_url,Boards);
-        getToCollection(users_url,Users);
+        getToCollection(users_url,UserProfiles);
         var boards = Boards.find({});
         boards.forEach( function(board) {
             Boards.update(board, {'$set' : {'active' : false }});

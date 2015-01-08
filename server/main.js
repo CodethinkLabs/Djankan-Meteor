@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Meteor.startup(function() {
     Boards.remove({});
-    Users.remove({});
+    UserProfiles.remove({});
     //get boards
     board_url = HOST+API+'boards/';
     getToCollection(board_url,Boards);
@@ -35,5 +35,5 @@ Meteor.startup(function() {
     });
     //get users
     users_url = HOST+API+'users/';
-    getToCollection(users_url,Users);
+    getToCollection(users_url,UserProfiles);
 });

@@ -45,7 +45,7 @@ Template.archive.helpers({
     },
     assigneeName: function(assignee_id) {
         assignee = Assignees.findOne({id: assignee_id}).person;
-        return Users.findOne({id: assignee}).username;
+        return UserProfiles.findOne({id: assignee}).username;
     }
 });
 

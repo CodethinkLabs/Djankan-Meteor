@@ -21,11 +21,11 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-Meteor.publish('allUsers', function(board_id) {
-  return Users.find({});
+Meteor.publish('allUserProfiles', function(board_id) {
+  return UserProfiles.find({});
 });
 
-Meteor.publish('permittedUsers', function(board_id) {
+Meteor.publish('permittedUserProfiles', function(board_id) {
     permissions = Permissions.find({board:board_id});
     var permittedUserIDs = new Array();
     // make array of each user with permission for this board
@@ -34,6 +34,6 @@ Meteor.publish('permittedUsers', function(board_id) {
         if(!$.inArray(id, permittedUserIds))
             permittedUserIds.push(id);
     });
-    return Users.find({id: {$in: permittedUserIds}});
+    return UserProfiles.find({id: {$in: permittedUserIds}});
 });
 

@@ -86,7 +86,7 @@ Session.set('view','kanban');
 
 Meteor.subscribe('boards', function() {
 });
-Meteor.subscribe('allUsers', function() {
+Meteor.subscribe('allUserProfiles', function() {
 });
 
 Template.lane.rendered = function() {
