@@ -22,16 +22,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 // get json from a url and parse it into a collection
-getToCollection = function(url,Collection) {
+getToCollection = function(url,Collection,callback) {
     try {
         var r = HTTP.call("GET", url);
         var respJson = JSON.parse(r.content)
         for(var i=0;i<respJson.length;i++) {
             Collection.insert(respJson[i])
         }
+        if(callback)
+            callback();
     }
     catch (e) {
-        console.log("Response issue: url: "+url);
+        console.log(e);
     }
 }
 
