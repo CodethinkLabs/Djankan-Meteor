@@ -25,7 +25,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <table class="timeline">
         {{#each outstandingMilestones }}
             <tr>
-            <td class="timelineTitle">{{title}}</td>
+            <td class="timelineTitle">
+                <a class="timelineTitleLink" href="#">
+                    {{title}}
+                </a>
+            </td>
             {{#each daysToGo dueDate }}
                 <td class="timelineDay"></td>
             {{/each }}
