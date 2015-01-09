@@ -68,4 +68,10 @@ arrayOfLength = function(length) {
 };
 
 Template.timeline.events = {
+    'click .timelineTitleLink': function() {
+        Session.set('menu','milestone');
+        Session.set('menu_edit',this._id)
+    }
 };
+
+

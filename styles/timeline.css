@@ -42,3 +42,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     white-space:nowrap;
     width:100px;
 }
+
+.timelineTitleLink {
+    text-decoration: none;
+    color: black;
+}
+
+.timelineTitleLink:hover {
+    text-decoration: underline;
+}
