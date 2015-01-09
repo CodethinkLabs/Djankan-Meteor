@@ -1,4 +1,4 @@
-<!--The MIT License (MIT)
+/*The MIT License (MIT)
 
 Copyright (c) 2013 Andy Dai
 Copyright (c) 2014 Codethink Ltd.
@@ -19,23 +19,26 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
--->
+*/
 
-<template name="board">
-    <style>
-        .board {
-            width: {{ boardWidth }}px;
-            height: {{ boardHeight }}px;
-        }
-    </style>
-    {{#if archiveView }}
-        {{> archive }}
-    {{else}}
-    {{>timeline}}
-    <div class="board">
-        {{ #each lanes }}
-            {{ > lane }}
-        {{ /each }}
-    </div>
-    {{/if }}
-</template>
+.timeline {
+    width: 99%;
+    background-color: #EEE;
+    margin: 8px ;
+    border-radius: 10px;
+    box-shadow: 1px 0px 1px #ccc;
+}
+
+.timeline tr {
+    height: 10px;
+}
+
+.timelineDay {
+    width: 10px;
+    background-color: #D47FB9;
+}
+
+.timelineTitle {
+    white-space:nowrap;
+    width:100px;
+}
