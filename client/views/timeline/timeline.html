@@ -21,21 +21,16 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<template name="board">
-    <style>
-        .board {
-            width: {{ boardWidth }}px;
-            height: {{ boardHeight }}px;
-        }
-    </style>
-    {{#if archiveView }}
-        {{> archive }}
-    {{else}}
-    {{>timeline}}
-    <div class="board">
-        {{ #each lanes }}
-            {{ > lane }}
-        {{ /each }}
-    </div>
-    {{/if }}
+<template name="timeline">
+    <table class="timeline">
+        {{#each outstandingMilestones }}
+            <tr>
+            <td class="timelineTitle">{{title}}</td>
+            {{#each daysToGo dueDate }}
+                <td class="timelineDay"></td>
+            {{/each }}
+            <td></td>
+            </tr>
+        {{/each }}
+    </table>
 </template>
