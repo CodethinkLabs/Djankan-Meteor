@@ -1,3 +1,3 @@
-ccounts.config({
+Accounts.config({
   forbidClientAccountCreation : true
 });
