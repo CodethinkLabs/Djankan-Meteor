@@ -78,7 +78,6 @@ Meteor.methods({
         url = HOST+API+'boards/'+BOARD_ID+'/lanes/'+ID+'/';
         try {
             r = HTTP.call("PUT",url,{data: lane},function() {
-                Meteor.call('updateLanes',boardId);
             });
         }
         catch (e) {

@@ -43,8 +43,9 @@ function initialSortable() {
                     Lanes.update({_id:lane._id},lane);
                 }
             });
-            Meteor.call('putlanes',boardId);
-            Meteor.call('updateLanes',boardId);
+            Meteor.call('putlanes',boardId, function () {
+                Meteor.call('updateLanes',boardId);
+            });
         },
         stop: function(event, ui) {
             initialSortable();
@@ -70,7 +71,6 @@ function initialSortable() {
                 // put card
                 Meteor.call('changeLane',cardId,newLane.id);
                 // update cards
-                Meteor.call('updateCards',boardId);
             }
             initialSortable();
         }
