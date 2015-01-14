@@ -7,5 +7,9 @@ djankan = {
             email:newUserEmailAddress,
             password:"password"
         })
+        getUserProfiles();
+    },
+    getUserProfiles : function() {
+        getUserProfiles()
     }
 }
